@@ -1,0 +1,298 @@
+---
+// Navbar.astro
+import BrandLogo from './BrandLogo.astro';
+---
+
+<header class="navbar-wrapper">
+  <div class="site-container">
+    <nav class="navbar glass-panel">
+      <a href="#" aria-label="Alifah Azhar Home">
+        <BrandLogo size="md" />
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <ul class="nav-links">
+        <li><a href="#about" class="nav-item">About</a></li>
+        <li><a href="#case-studies" class="nav-item">Case Studies</a></li>
+        <li><a href="#strategy" class="nav-item">Strategy</a></li>
+        <li><a href="#skills" class="nav-item">Skills</a></li>
+        <li><a href="#experience" class="nav-item">Experience</a></li>
+      </ul>
+
+      <!-- Action Buttons -->
+      <div class="nav-actions">
+        <a 
+          href="https://wa.me/6281259488390?text=Hi%20Alifah,%20I%20saw%20your%20portfolio%20and%20would%20love%20to%20connect!" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          class="btn-whatsapp btn-sm"
+          title="Chat on WhatsApp"
+        >
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+          </svg>
+          <span class="btn-text">WhatsApp</span>
+        </a>
+
+        <a href="#contact" class="btn-primary btn-sm desktop-only-cta">
+          <span>Let's Talk</span>
+        </a>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button id="mobile-toggle" class="mobile-toggle-btn" aria-label="Toggle Navigation Menu">
+          <svg class="icon-menu" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+          <svg class="icon-close" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </nav>
+  </div>
+
+  <!-- Mobile Dropdown Navigation -->
+  <div id="mobile-menu" class="mobile-menu glass-panel">
+    <ul class="mobile-nav-links">
+      <li><a href="#about" class="mobile-nav-item">About</a></li>
+      <li><a href="#case-studies" class="mobile-nav-item">Case Studies</a></li>
+      <li><a href="#strategy" class="mobile-nav-item">Strategy</a></li>
+      <li><a href="#skills" class="mobile-nav-item">Skills</a></li>
+      <li><a href="#experience" class="mobile-nav-item">Experience</a></li>
+      <li><a href="#contact" class="mobile-nav-item">Contact & Inquiries</a></li>
+    </ul>
+    <div class="mobile-cta-group">
+      <a 
+        href="https://wa.me/6281259488390?text=Hi%20Alifah,%20I%20saw%20your%20portfolio%20and%20would%20love%20to%20connect!" 
+        target="_blank" 
+        rel="noopener noreferrer"
+        class="btn-whatsapp"
+        style="width: 100%;"
+      >
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+        </svg>
+        Chat on WhatsApp
+      </a>
+    </div>
+  </div>
+</header>
+
+<style>
+  .navbar-wrapper {
+    position: fixed;
+    top: 1rem;
+    left: 0;
+    right: 0;
+    z-index: 90;
+  }
+
+  .navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.6rem 1.15rem;
+    border-radius: 9999px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(20, 16, 30, 0.88);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+
+  @media (max-width: 640px) {
+    .navbar {
+      padding: 0.5rem 0.85rem;
+    }
+  }
+
+  .brand-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .logo-monogram {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #f43f5e 0%, #c084fc 100%);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 0.95rem;
+    letter-spacing: -0.05em;
+    box-shadow: 0 4px 12px rgba(244, 63, 94, 0.35);
+  }
+
+  .brand-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+  }
+
+  .brand-name {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+
+  .brand-sub {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 1.75rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .nav-item {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #cbd5e1;
+    transition: color 0.2s ease;
+    position: relative;
+    padding: 0.25rem 0;
+  }
+
+  .nav-item:hover {
+    color: #fda4af;
+  }
+
+  .nav-item::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #fb7185;
+    transition: width 0.25s ease;
+    border-radius: 9999px;
+  }
+
+  .nav-item:hover::after {
+    width: 100%;
+  }
+
+  .nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .btn-sm {
+    padding: 0.5rem 1.15rem;
+    font-size: 0.825rem;
+  }
+
+  .mobile-toggle-btn {
+    display: none;
+    color: var(--text-primary);
+    padding: 0.4rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+  }
+
+  .mobile-toggle-btn .icon-close {
+    display: none;
+  }
+
+  .mobile-menu {
+    display: none;
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    left: 1.5rem;
+    right: 1.5rem;
+    padding: 1.5rem;
+    flex-direction: column;
+    gap: 1.25rem;
+    background: rgba(20, 16, 30, 0.96);
+    border: 1px solid rgba(251, 113, 133, 0.25);
+  }
+
+  .mobile-menu.open {
+    display: flex;
+  }
+
+  .mobile-nav-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin: 0;
+    padding: 0;
+  }
+
+  .mobile-nav-item {
+    display: block;
+    padding: 0.6rem 0.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #cbd5e1;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .mobile-nav-item:hover {
+    color: #fda4af;
+  }
+
+  @media (max-width: 960px) {
+    .nav-links {
+      display: none;
+    }
+    .btn-text {
+      display: none;
+    }
+    .desktop-only-cta {
+      display: none;
+    }
+    .mobile-toggle-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .mobile-toggle-btn.active .icon-menu {
+      display: none;
+    }
+    .mobile-toggle-btn.active .icon-close {
+      display: block;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .brand-sub {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  const toggleBtn = document.getElementById('mobile-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const mobileLinks = document.querySelectorAll('.mobile-nav-item');
+
+  if (toggleBtn && mobileMenu) {
+    toggleBtn.addEventListener('click', () => {
+      toggleBtn.classList.toggle('active');
+      mobileMenu.classList.toggle('open');
+    });
+
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        toggleBtn.classList.remove('active');
+        mobileMenu.classList.remove('open');
+      });
+    });
+  }
+</script>

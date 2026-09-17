@@ -1,0 +1,30 @@
+# Robots.txt for Alifah Azhar Nurhazmi Portfolio
+# https://alifahazhar.com
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://alifahazhar.com/sitemap.xml
+
+# Explicit AI Engine & LLM Search Engine Permissions (AIO / GEO)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Bingbot
+Allow: /

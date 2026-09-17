@@ -1,0 +1,59 @@
+---
+// BrandLogo.astro - Consistent, unified brand identity for Navbar & Footer
+interface Props {
+  size?: 'sm' | 'md' | 'lg';
+  showSubtitle?: boolean;
+}
+
+const { size = 'md', showSubtitle = true } = Astro.props;
+
+const dimensions = {
+  sm: { box: 'w-8 h-8', icon: 'w-8 h-8', name: 'text-sm', sub: 'text-[10px]' },
+  md: { box: 'w-10 h-10', icon: 'w-10 h-10', name: 'text-base font-bold', sub: 'text-[11px]' },
+  lg: { box: 'w-12 h-12', icon: 'w-12 h-12', name: 'text-lg font-extrabold', sub: 'text-xs' },
+}[size];
+---
+
+<div class="brand-logo-component inline-flex items-center gap-3 group">
+  <!-- Stylized Monogram Badge -->
+  <div class={`relative ${dimensions.box} rounded-xl bg-gradient-to-br from-rose-500/20 via-purple-500/20 to-pink-500/20 p-0.5 border border-rose-400/35 shadow-md shadow-rose-500/10 group-hover:border-rose-400 group-hover:shadow-rose-500/25 transition-all duration-300 flex-shrink-0`}>
+    <div class="w-full h-full rounded-[10px] bg-slate-950/90 flex items-center justify-center overflow-hidden">
+      <!-- Monogram SVG -->
+      <svg class="w-full h-full p-1.5" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#fb7185" />
+            <stop offset="60%" stop-color="#f43f5e" />
+            <stop offset="100%" stop-color="#c084fc" />
+          </linearGradient>
+          <linearGradient id="sparkleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#fef08a" />
+            <stop offset="100%" stop-color="#f59e0b" />
+          </linearGradient>
+        </defs>
+
+        <!-- First Stylized 'A' -->
+        <path d="M28 78 L45 22 L55 22 L72 78 L62 78 L57 62 L43 62 L38 78 Z M46 52 L54 52 L50 36 Z" fill="url(#logoGrad)" />
+        
+        <!-- Second Overlapping 'A' contour line -->
+        <path d="M50 78 L67 22 L77 22 L94 78 L84 78 L79 62 L65 62 L60 78 Z M68 52 L76 52 L72 36 Z" fill="url(#logoGrad)" opacity="0.85" />
+
+        <!-- Chic Star Accent -->
+        <path d="M80 14 Q80 20 86 20 Q80 20 80 26 Q80 20 74 20 Q80 20 80 14 Z" fill="url(#sparkleGrad)" />
+      </svg>
+    </div>
+  </div>
+
+  <!-- Brand Typography -->
+  <div class="flex flex-col leading-tight">
+    <span class={`${dimensions.name} text-white group-hover:text-rose-200 transition-colors tracking-tight font-bold`}>
+      Alifah Azhar
+    </span>
+    {showSubtitle && (
+      <span class={`${dimensions.sub} text-rose-300/80 font-medium tracking-normal hidden sm:inline-flex items-center gap-1`}>
+        <span>Meta Ads & Growth</span>
+        <span class="text-amber-300">✨</span>
+      </span>
+    )}
+  </div>
+</div>

@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1f1430" />
+      <stop offset="100%" stop-color="#0e0a16" />
+    </linearGradient>
+
+    <!-- Brand Rose to Lavender Gradient -->
+    <linearGradient id="roseToLavender" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fb7185" />
+      <stop offset="50%" stop-color="#f43f5e" />
+      <stop offset="100%" stop-color="#c084fc" />
+    </linearGradient>
+
+    <!-- Accent Champagne Glow -->
+    <linearGradient id="goldGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a" />
+      <stop offset="100%" stop-color="#f59e0b" />
+    </linearGradient>
+
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="16" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Background Card -->
+  <rect width="512" height="512" rx="128" fill="url(#bgGrad)" />
+  <rect width="506" height="506" x="3" y="3" rx="125" stroke="url(#roseToLavender)" stroke-width="6" stroke-opacity="0.35" fill="none" />
+
+  <!-- Monogram AA Modern Geometry -->
+  <g transform="translate(48, 76)">
+    <!-- First 'A' -->
+    <path 
+      d="M148 50 L70 290 L118 290 L138 226 L218 226 L238 290 L286 290 L208 50 L148 50 Z M178 108 L204 186 L152 186 L178 108 Z" 
+      fill="url(#roseToLavender)" 
+      filter="url(#glow)"
+      opacity="0.95"
+    />
+
+    <!-- Interlocking Second 'A' (offset & connected) -->
+    <path 
+      d="M268 90 L190 330 L238 330 L258 266 L338 266 L358 330 L406 330 L328 90 L268 90 Z M298 148 L324 226 L272 226 L298 148 Z" 
+      fill="url(#roseToLavender)" 
+    />
+
+    <!-- Growth & Magic Sparkle (Star) -->
+    <path 
+      d="M360 40 Q360 70 390 70 Q360 70 360 100 Q360 70 330 70 Q360 70 360 40 Z" 
+      fill="url(#goldGlow)"
+    />
+  </g>
+</svg>

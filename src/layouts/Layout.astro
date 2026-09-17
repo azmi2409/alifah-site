@@ -1,0 +1,269 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+  canonicalUrl?: string;
+  ogImage?: string;
+}
+
+const {
+  title = "Alifah Azhar Nurhazmi | Digital Marketer & Meta Ads Specialist",
+  description = "Portfolio of Alifah Azhar Nurhazmi — Performance Marketer & Meta Ads Specialist. Former commercial banker managing Rp 10B+/mo credit portfolios, combining financial discipline with high-converting Meta Ads, A/B creative testing, and Looker Studio attribution.",
+  canonicalUrl = "https://alifahazhar.com",
+  ogImage = "https://alifahazhar.com/images/alifah.webp",
+} = Astro.props;
+
+// Comprehensive JSON-LD Structured Data for Google Rich Results & AIO / AI Overviews (Perplexity, ChatGPT, Gemini, Copilot)
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://alifahazhar.com/#website",
+      "url": "https://alifahazhar.com",
+      "name": "Alifah Azhar Nurhazmi — Portfolio",
+      "description": description,
+      "inLanguage": "en-US",
+      "publisher": {
+        "@id": "https://alifahazhar.com/#person"
+      }
+    },
+    {
+      "@type": "ProfilePage",
+      "@id": "https://alifahazhar.com/#profilepage",
+      "url": "https://alifahazhar.com",
+      "name": title,
+      "isPartOf": {
+        "@id": "https://alifahazhar.com/#website"
+      },
+      "mainEntity": {
+        "@id": "https://alifahazhar.com/#person"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://alifahazhar.com/#person",
+      "name": "Alifah Azhar Nurhazmi",
+      "alternateName": ["Alifah Azhar", "Alifah"],
+      "jobTitle": "Performance Marketer & Meta Ads Specialist",
+      "description": "Former commercial banker managing Rp 10B+/month commercial financing portfolios, now scaling brands through Meta Ads Manager, A/B creative testing, and Looker Studio attribution.",
+      "url": "https://alifahazhar.com",
+      "image": {
+        "@type": "ImageObject",
+        "url": ogImage,
+        "caption": "Alifah Azhar Nurhazmi - Performance Marketer & Meta Ads Specialist"
+      },
+      "email": "mailto:alifahazhar@gmail.com",
+      "telephone": "+6281259488390",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Bekasi",
+        "addressRegion": "West Java",
+        "addressCountry": "ID"
+      },
+      "sameAs": [
+        "https://linkedin.com/in/alifahazhar",
+        "https://wa.me/6281259488390"
+      ],
+      "alumniOf": [
+        {
+          "@type": "CollegeOrUniversity",
+          "name": "Bogor Agricultural University (IPB)",
+          "sameAs": "https://ipb.ac.id"
+        },
+        {
+          "@type": "EducationalOrganization",
+          "name": "RevoU",
+          "description": "Full Stack Digital Marketing (FSDM)"
+        }
+      ],
+      "knowsAbout": [
+        "Meta Ads Manager",
+        "Performance Marketing",
+        "Paid Social Advertising",
+        "Campaign Budget Optimization (CBO)",
+        "Ad Set Budget Optimization (ABO)",
+        "Looker Studio / Google Data Studio",
+        "ROAS Attribution & CPA Optimization",
+        "A/B Creative & Hook Testing",
+        "Audience Segmentation & Custom Audiences",
+        "Commercial Banking & Credit Risk Analysis"
+      ],
+      "award": [
+        "Top 3 Best Achievement Account Officer PT Bank BRISyariah Tbk (2020)"
+      ]
+    },
+    {
+      "@type": "ItemList",
+      "@id": "https://alifahazhar.com/#casestudies",
+      "name": "Featured Case Studies & Client Campaigns",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Bonsai Sushi — End-to-End Meta Ads & Instagram Creative Strategy",
+          "description": "Full-funnel paid acquisition strategy combining targeted Facebook Ads and Google Display Ads with hands-on Instagram content planning and creative ad design in Cibubur, Jakarta."
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Kowara Eatery Group — Performance Marketing & Looker Studio Attribution",
+          "description": "Managed Facebook Ads accounts via RevoU Labs, executing rigorous A/B testing and delivering automated Google Data Studio reporting for an expanding Asian fusion group."
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Indental Clinic Surabaya — High-Intent Dental Care & Beauty Paid Acquisition",
+          "description": "Precision geo-targeted Facebook Ads campaign for a premier Surabaya dental clinic, driving patient inquiries for routine dental care and cosmetic dentistry."
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "Bali WISE Non-Profit — Social Media Advertising Vocational Curriculum",
+          "description": "Developed a comprehensive educational module on social media advertising for Bali WISE, empowering marginalized Indonesian women with practical job-ready digital marketing skills."
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://alifahazhar.com/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Who is Alifah Azhar Nurhazmi?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Alifah Azhar Nurhazmi is an Indonesian Performance Marketer and Meta Ads Specialist based in Bekasi, West Java. She previously worked in commercial banking at PT Bank BRISyariah Tbk (managing Rp 10B+/month commercial financing) and BNI Life before graduating from RevoU Full Stack Digital Marketing."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What makes Alifah Azhar's paid acquisition approach different?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Unlike traditional agencies that focus solely on vanity metrics like impressions and clicks, Alifah evaluates ad spend through the lens of a commercial banker's profit-and-loss statement—focusing on customer acquisition cost (CAC), return on ad spend (ROAS), EBITDA impact, and transparent Looker Studio attribution."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What services and platforms does Alifah Azhar specialize in?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Alifah specializes in Meta Ads Manager (Facebook & Instagram Ads), Campaign Budget Optimization (CBO), Ad Set Budget Optimization (ABO), Advantage+ campaigns, Looker Studio/Google Data Studio attribution reporting, multi-variant A/B creative testing, audience segmentation, and content strategy."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How can businesses contact Alifah Azhar for consulting or project collaboration?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Businesses can reach Alifah Azhar via WhatsApp at +62 812 5948 8390, email at alifahazhar@gmail.com, or through her LinkedIn profile at linkedin.com/in/alifahazhar."
+          }
+        }
+      ]
+    }
+  ]
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0c0a12" />
+    <meta name="color-scheme" content="dark" />
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href={canonicalUrl} />
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png" />
+    <link rel="apple-touch-icon" href="/favicon-192.png" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Primary Search Engine Optimization (SEO) -->
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+    <meta name="author" content="Alifah Azhar Nurhazmi" />
+    <meta name="keywords" content="Alifah Azhar, Alifah Azhar Nurhazmi, Meta Ads Specialist, Facebook Ads Specialist, Digital Marketer Indonesia, Performance Marketing, RevoU, Bogor Agricultural University, Looker Studio Reporting, CBO, ABO, Paid Acquisition" />
+    
+    <!-- Search Engine Indexing & Bot Directives -->
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    
+    <!-- AI Optimization (AIO / GEO) Discovery Links -->
+    <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM Context Summary" />
+
+    <!-- Open Graph / Facebook / LinkedIn / WhatsApp -->
+    <meta property="og:type" content="profile" />
+    <meta property="og:site_name" content="Alifah Azhar Portfolio" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="800" />
+    <meta property="og:image:height" content="800" />
+    <meta property="og:image:alt" content="Alifah Azhar Nurhazmi - Performance Marketer & Meta Ads Specialist" />
+    <meta property="og:image:type" content="image/webp" />
+
+    <!-- Twitter / X Cards -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={canonicalUrl} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image:alt" content="Alifah Azhar Nurhazmi - Performance Marketer & Meta Ads Specialist" />
+
+    <!-- Mobile App & Browser UI Optimization -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Alifah Azhar" />
+    <meta name="format-detection" content="telephone=no" />
+
+    <!-- Structured Data: JSON-LD for Search Engines and AI Crawlers (AIO) -->
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+
+    <!-- Google Fonts Preconnect & Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+    <link rel="stylesheet" href="/src/styles/global.css" />
+  </head>
+  <body>
+    <slot />
+
+    <!-- Toast Notification element -->
+    <div id="toast" class="toast-notice" role="alert" aria-live="polite">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="shrink-0">
+        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+        <polyline points="22 4 12 14.01 9 11.01"></polyline>
+      </svg>
+      <span id="toast-message">Copied to clipboard!</span>
+    </div>
+
+    <script>
+      // Global toast helper
+      let toastTimer: any = null;
+      (window as any).showToast = (msg: string) => {
+        const toast = document.getElementById('toast');
+        const msgEl = document.getElementById('toast-message');
+        if (toast && msgEl) {
+          msgEl.textContent = msg;
+          toast.classList.add('show');
+          if (toastTimer) clearTimeout(toastTimer);
+          toastTimer = setTimeout(() => {
+            toast.classList.remove('show');
+          }, 2600);
+        }
+      };
+    </script>
+  </body>
+</html>

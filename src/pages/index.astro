@@ -1,0 +1,35 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import HeroMotion from '../components/HeroMotion';
+import MetricsRibbon from '../components/MetricsRibbon';
+import AboutSection from '../components/AboutSection';
+import InteractiveCaseStudies from '../components/InteractiveCaseStudies';
+import StrategyEngine from '../components/StrategyEngine';
+import SkillsSection from '../components/SkillsSection';
+import ExperienceTimeline from '../components/ExperienceTimeline';
+import EducationCertifications from '../components/EducationCertifications';
+import ContactSection from '../components/ContactSection';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout 
+  title="Alifah Azhar Nurhazmi | Digital Marketer & Meta Ads Specialist"
+  description="Portfolio of Alifah Azhar Nurhazmi — Performance Marketer & Meta Ads Specialist. Former commercial banker bringing financial discipline, A/B testing, and Looker Studio attribution to high-growth brands."
+>
+  <Navbar />
+  
+  <main>
+    <HeroMotion client:load />
+    <MetricsRibbon client:visible />
+    <AboutSection client:visible />
+    <InteractiveCaseStudies client:visible />
+    <StrategyEngine client:visible />
+    <SkillsSection client:visible />
+    <ExperienceTimeline client:visible />
+    <EducationCertifications client:visible />
+    <ContactSection client:visible />
+  </main>
+
+  <Footer />
+</Layout>
