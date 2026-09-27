@@ -1,11 +1,11 @@
 # Robots.txt for Alifah Azhar Nurhazmi Portfolio
-# https://alifah.my.id
+# https://www.alifah.my.id
 
 User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://alifah.my.id/sitemap.xml
+Sitemap: https://www.alifah.my.id/sitemap.xml
 
 # Explicit AI Engine & LLM Search Engine Permissions (AIO / GEO)
 User-agent: GPTBot

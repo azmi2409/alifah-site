@@ -12,8 +12,8 @@ interface Props {
 const {
   title = "Alifah Azhar Nurhazmi | Performance Marketer & Meta Ads Specialist",
   description = "Portfolio of Alifah Azhar Nurhazmi — Performance Marketer & Meta Ads Specialist. Former commercial banker combining financial discipline with Meta Ads, A/B creative testing, and Looker Studio reporting.",
-  canonicalUrl = "https://alifah.my.id/",
-  ogImage = "https://alifah.my.id/images/alifah.webp",
+  canonicalUrl = "https://www.alifah.my.id/",
+  ogImage = "https://www.alifah.my.id/images/alifah.webp",
   noindex = false,
 } = Astro.props;
 
@@ -23,35 +23,35 @@ const structuredData = {
   "@graph": [
     {
       "@type": "WebSite",
-      "@id": "https://alifah.my.id/#website",
-      "url": "https://alifah.my.id/",
+      "@id": "https://www.alifah.my.id/#website",
+      "url": "https://www.alifah.my.id/",
       "name": "Alifah Azhar Nurhazmi — Portfolio",
       "description": description,
       "inLanguage": "en-US",
       "publisher": {
-        "@id": "https://alifah.my.id/#person"
+        "@id": "https://www.alifah.my.id/#person"
       }
     },
     {
       "@type": "ProfilePage",
-      "@id": "https://alifah.my.id/#profilepage",
-      "url": "https://alifah.my.id/",
+      "@id": "https://www.alifah.my.id/#profilepage",
+      "url": "https://www.alifah.my.id/",
       "name": title,
       "isPartOf": {
-        "@id": "https://alifah.my.id/#website"
+        "@id": "https://www.alifah.my.id/#website"
       },
       "mainEntity": {
-        "@id": "https://alifah.my.id/#person"
+        "@id": "https://www.alifah.my.id/#person"
       }
     },
     {
       "@type": "Person",
-      "@id": "https://alifah.my.id/#person",
+      "@id": "https://www.alifah.my.id/#person",
       "name": "Alifah Azhar Nurhazmi",
       "alternateName": ["Alifah Azhar", "Alifah"],
       "jobTitle": "Performance Marketer & Meta Ads Specialist",
       "description": "Former commercial banker now working in performance marketing through Meta Ads, A/B creative testing, and Looker Studio reporting.",
-      "url": "https://alifah.my.id/",
+      "url": "https://www.alifah.my.id/",
       "image": {
         "@type": "ImageObject",
         "url": ogImage,
@@ -99,7 +99,7 @@ const structuredData = {
     },
     {
       "@type": "ItemList",
-      "@id": "https://alifah.my.id/#casestudies",
+      "@id": "https://www.alifah.my.id/#casestudies",
       "name": "Featured Case Studies & Client Campaigns",
       "itemListElement": [
         {
@@ -125,44 +125,6 @@ const structuredData = {
           "position": 4,
           "name": "Bali WISE Non-Profit — Social Media Advertising Vocational Curriculum",
           "description": "Developed a comprehensive educational module on social media advertising for Bali WISE, empowering marginalized Indonesian women with practical job-ready digital marketing skills."
-        }
-      ]
-    },
-    {
-      "@type": "FAQPage",
-      "@id": "https://alifah.my.id/#faq",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "Who is Alifah Azhar Nurhazmi?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Alifah Azhar Nurhazmi is an Indonesian Performance Marketer and Meta Ads Specialist based in Bekasi, West Java. She previously worked in commercial banking at PT Bank BRISyariah Tbk and BNI Life before graduating from RevoU Full Stack Digital Marketing."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "What makes Alifah Azhar's paid acquisition approach different?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Unlike traditional agencies that focus solely on vanity metrics like impressions and clicks, Alifah evaluates ad spend through the lens of a commercial banker's profit-and-loss statement—focusing on customer acquisition cost (CAC), return on ad spend (ROAS), EBITDA impact, and transparent Looker Studio attribution."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "What services and platforms does Alifah Azhar specialize in?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Alifah specializes in Meta Ads Manager (Facebook & Instagram Ads), Campaign Budget Optimization (CBO), Ad Set Budget Optimization (ABO), Advantage+ campaigns, Looker Studio/Google Data Studio attribution reporting, multi-variant A/B creative testing, audience segmentation, and content strategy."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "How can businesses contact Alifah Azhar for consulting or project collaboration?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Businesses can reach Alifah Azhar via WhatsApp at +62 812 5948 8390, email at alifahazhar@gmail.com, or through her LinkedIn profile at linkedin.com/in/alifahazhar."
-          }
         }
       ]
     }

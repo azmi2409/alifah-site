@@ -37,7 +37,7 @@ const experiences: ExperienceItem[] = [
     duration: '2 mos',
     location: 'Jakarta, Indonesia',
     type: 'Digital Marketing',
-    badgeColor: 'bg-purple-500/10 text-purple-300 border-purple-500/25',
+    badgeColor: 'bg-rose-500/10 text-rose-300 border-rose-500/25',
     points: [
       'Managed Kowara Eatery Group’s Facebook Ads account as part of RevoU Labs for an expanding F&B business in Jakarta.',
       'Executed full campaign lifecycle: targeting setup, A/B creative testing, and proactive budget allocation.',
@@ -52,7 +52,7 @@ const experiences: ExperienceItem[] = [
     duration: '3 mos',
     location: 'Surabaya, East Java, Indonesia',
     type: 'Digital Marketing',
-    badgeColor: 'bg-pink-500/10 text-pink-300 border-pink-500/25',
+    badgeColor: 'bg-rose-500/10 text-rose-300 border-rose-500/25',
     points: [
       'Managed Facebook Ads account for a premier Surabaya dental clinic specializing in dental care and cosmetic dentistry.',
       'Constructed geo-targeted campaigns in East Java with A/B testing across ad imagery and patient value hooks.',
@@ -66,7 +66,7 @@ const experiences: ExperienceItem[] = [
     duration: '1 mo',
     location: 'Nusa Dua, Bali, Indonesia',
     type: 'Digital Marketing',
-    badgeColor: 'bg-emerald-500/10 text-emerald-300 border-emerald-500/25',
+    badgeColor: 'bg-rose-500/10 text-rose-300 border-rose-500/25',
     points: [
       'Authored the social media advertising curriculum for Bali WISE (a non-profit empowering marginalized women through vocational education).',
       'Engineered a complete educational module covering social media ad strategies, technical theory, campaign summaries, and interactive quizzes.',
@@ -76,7 +76,7 @@ const experiences: ExperienceItem[] = [
     company: 'PT Bank Syariah Indonesia Tbk. (Bank BRISyariah)',
     role: 'Account Officer',
     period: 'June 2017 - January 2021',
-    duration: '3 yrs 8 mos',
+    duration: '3 yrs 7 mos',
     location: 'Jakarta, Indonesia',
     type: 'Banking & Finance',
     badgeColor: 'bg-amber-400/10 text-amber-300 border-amber-400/25',
@@ -167,8 +167,8 @@ export default function ExperienceTimeline() {
               whileHover={{ x: 4 }}
             >
               {/* Header row */}
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
-                <div>
+              <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 mb-4">
+                <div className="min-w-0 flex-1">
                   <div className="flex flex-wrap items-center gap-2 mb-1">
                     <h3 className="text-xl font-bold text-white">{item.company}</h3>
                     <span className={`text-[11px] font-bold px-2.5 py-0.5 rounded-full border ${item.badgeColor}`}>
@@ -178,14 +178,18 @@ export default function ExperienceTimeline() {
                   <p className="text-sm font-semibold text-rose-300">{item.role}</p>
                 </div>
 
-                <div className="flex flex-col sm:items-end text-xs text-slate-400">
-                  <div className="flex items-center gap-1.5 font-medium text-slate-300">
-                    <Calendar className="w-3.5 h-3.5 text-slate-400" />
-                    <span>{item.period}</span>
-                    <span className="text-slate-500 font-mono">({item.duration})</span>
+                <div className="flex flex-col sm:items-end text-xs text-slate-400 sm:shrink-0">
+                  <div className="flex flex-wrap sm:flex-nowrap items-center gap-2 font-medium text-slate-300">
+                    <span className="inline-flex items-center gap-1.5 whitespace-nowrap">
+                      <Calendar className="w-3.5 h-3.5 text-slate-400 shrink-0" />
+                      <span>{item.period}</span>
+                    </span>
+                    <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-medium bg-white/5 border border-white/10 text-slate-300 whitespace-nowrap shrink-0">
+                      {item.duration}
+                    </span>
                   </div>
-                  <div className="flex items-center gap-1 mt-0.5">
-                    <MapPin className="w-3 h-3 text-slate-500" />
+                  <div className="flex items-center gap-1 mt-1 text-slate-400">
+                    <MapPin className="w-3 h-3 text-slate-500 shrink-0" />
                     <span>{item.location}</span>
                   </div>
                 </div>

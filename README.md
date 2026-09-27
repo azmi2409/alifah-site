@@ -1,6 +1,6 @@
 # Alifah Azhar Portfolio
 
-Astro portfolio for Alifah Azhar Nurhazmi. Live site: https://alifah.my.id/.
+Astro portfolio for Alifah Azhar Nurhazmi. Live site: https://www.alifah.my.id/.
 
 ## Local development
 

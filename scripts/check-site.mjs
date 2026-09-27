@@ -7,8 +7,8 @@ const sitemap = readFileSync(new URL('../dist/sitemap.xml', import.meta.url), 'u
 const robots = readFileSync(new URL('../dist/robots.txt', import.meta.url), 'utf8');
 const jsonLd = JSON.parse(home.match(/<script type="application\/ld\+json">([^<]+)<\/script>/)?.[1] ?? 'null');
 
-assert.match(home, /<link rel="canonical" href="https:\/\/alifah\.my\.id\/"/);
-assert.match(home, /<meta property="og:url" content="https:\/\/alifah\.my\.id\/"/);
+assert.match(home, /<link rel="canonical" href="https:\/\/www\.alifah\.my\.id\/"/);
+assert.match(home, /<meta property="og:url" content="https:\/\/www\.alifah\.my\.id\/"/);
 assert.match(home, /Performance Marketer &amp; Meta Ads Specialist/);
 assert.ok(jsonLd?.['@graph']?.length);
 assert.ok(!JSON.stringify(jsonLd).includes('alifahazhar.com'));
