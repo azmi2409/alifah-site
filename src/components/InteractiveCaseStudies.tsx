@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ExternalLink, CheckCircle2, ChevronRight, Layers, BarChart, Sparkles, Filter, X } from 'lucide-react';
 
@@ -49,7 +49,7 @@ const projects: Project[] = [
     id: 'kowara-eatery',
     title: 'Performance Marketing & Looker Studio Attribution',
     client: 'Kowara Eatery Group',
-    category: 'F&B Multi-Brand Group',
+    category: 'F&B & Restaurant Growth',
     filterTag: 'fb',
     period: 'January 2023 - February 2023',
     location: 'Jakarta, Indonesia',
@@ -104,7 +104,7 @@ const projects: Project[] = [
     period: 'November 2022',
     location: 'Nusa Dua, Bali, Indonesia',
     role: 'Social Media Module Writer',
-    image: '/images/looker-dashboard.webp',
+    image: '/images/bali-wise-education.jpg',
     summary: 'Developed a comprehensive educational module on social media advertising for Bali WISE, empowering marginalized Indonesian women with practical, job-ready digital marketing skills.',
     deliverables: [
       'Complete pedagogical curriculum on social media advertising',
@@ -125,6 +125,36 @@ const projects: Project[] = [
 export default function InteractiveCaseStudies() {
   const [activeFilter, setActiveFilter] = useState<'all' | 'fb' | 'health' | 'edu'>('all');
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const dialogRef = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<HTMLButtonElement | null>(null);
+
+  useEffect(() => {
+    if (!selectedProject) return;
+    const dialog = dialogRef.current;
+    dialog?.querySelector<HTMLButtonElement>('button')?.focus();
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        setSelectedProject(null);
+      } else if (event.key === 'Tab' && dialog) {
+        const focusable = Array.from(dialog.querySelectorAll<HTMLElement>('button, a[href]'));
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last?.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first?.focus();
+        }
+      }
+    };
+    document.addEventListener('keydown', onKeyDown);
+    return () => {
+      document.removeEventListener('keydown', onKeyDown);
+      triggerRef.current?.focus();
+    };
+  }, [selectedProject]);
 
   const filteredProjects = activeFilter === 'all' 
     ? projects 
@@ -159,12 +189,13 @@ export default function InteractiveCaseStudies() {
             {[
               { id: 'all', label: 'All Projects' },
               { id: 'fb', label: 'F&B & Restaurant Growth' },
-              { id: 'health', label: 'Healthcare & Clinic' },
-              { id: 'edu', label: 'Education & Impact' },
+              { id: 'health', label: 'Healthcare & Aesthetics' },
+              { id: 'edu', label: 'Non-Profit & Vocational Education' },
             ].map((tab) => (
               <button
                 key={tab.id}
                 onClick={() => setActiveFilter(tab.id as any)}
+                aria-pressed={activeFilter === tab.id}
                 className={`px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-200 cursor-pointer ${
                   activeFilter === tab.id
                     ? 'bg-gradient-to-r from-rose-500 to-pink-500 text-white shadow-lg shadow-rose-500/30'
@@ -258,7 +289,10 @@ export default function InteractiveCaseStudies() {
                       {project.location}
                     </span>
                     <button
-                      onClick={() => setSelectedProject(project)}
+                      onClick={(event) => {
+                        triggerRef.current = event.currentTarget;
+                        setSelectedProject(project);
+                      }}
                       className="inline-flex items-center gap-1.5 text-xs font-bold text-rose-300 hover:text-rose-200 transition-colors cursor-pointer"
                     >
                       <span>Full Scope & Details</span>
@@ -283,6 +317,10 @@ export default function InteractiveCaseStudies() {
               onClick={() => setSelectedProject(null)}
             >
               <motion.div
+                ref={dialogRef}
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby="project-dialog-title"
                 className="glass-panel w-full max-w-2xl max-h-[90vh] overflow-y-auto p-6 sm:p-8 bg-slate-950 border border-rose-400/30 relative rounded-3xl shadow-2xl"
                 initial={{ scale: 0.9, y: 20 }}
                 animate={{ scale: 1, y: 0 }}
@@ -302,7 +340,7 @@ export default function InteractiveCaseStudies() {
                 <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-rose-500/20 text-rose-300 border border-rose-500/30 mb-3">
                   {selectedProject.category}
                 </span>
-                <h3 className="text-2xl sm:text-3xl font-bold text-white mb-2">
+                <h3 id="project-dialog-title" className="text-2xl sm:text-3xl font-bold text-white mb-2">
                   {selectedProject.title}
                 </h3>
                 <div className="flex flex-wrap items-center gap-3 text-xs text-slate-400 mb-6">

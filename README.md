@@ -1,43 +1,23 @@
-# Astro Starter Kit: Minimal
+# Alifah Azhar Portfolio
+
+Astro portfolio for Alifah Azhar Nurhazmi. Live site: https://alifah.my.id/.
+
+## Local development
 
 ```sh
-npm create astro@latest -- --template minimal
+npm install
+npx astro dev --background
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+Use `npx astro dev status`, `npx astro dev logs`, and `npx astro dev stop` to manage server.
 
-## 🚀 Project Structure
+## Build and check
 
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+```sh
+npm run build
+node scripts/check-site.mjs
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+`src/layouts/Layout.astro` owns canonical, social, and structured-data URLs. Keep `astro.config.mjs`, `public/robots.txt`, `public/sitemap.xml`, and `public/llms.txt` on live domain when changing it. `src/pages/404.astro` serves branded not-found page; static hosts must use generated `404.html` for unknown paths.
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Hero uses a lazy-loaded Three.js dot field. It skips WebGL for reduced-motion visitors and falls back to static gradient when WebGL is unavailable; animation pauses when hero is offscreen or tab is hidden.

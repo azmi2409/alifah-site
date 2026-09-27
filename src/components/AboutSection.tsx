@@ -92,7 +92,7 @@ export default function AboutSection() {
 
             <div className="space-y-4 text-sm text-slate-300 leading-relaxed">
               <p>
-                After graduating from <strong>Bogor Agricultural University (IPB)</strong>, I began my professional journey in commercial banking at <strong>PT Bank Syariah Indonesia Tbk (Bank BRISyariah)</strong> and <strong>BNI Life</strong>. Managing up to Rp 10 billion per month in credit financing instilled in me a deep respect for cash flow and measurable returns.
+                After graduating from <strong>Bogor Agricultural University (IPB)</strong>, I began my professional journey in commercial banking at <strong>PT Bank Syariah Indonesia Tbk (Bank BRISyariah)</strong> and <strong>BNI Life</strong>. That experience instilled in me a deep respect for cash flow and measurable returns.
               </p>
               <p>
                 As marketing shifted fundamentally into digital channels, I saw the immense power of paid customer acquisition. I graduated from the comprehensive <strong>RevoU Full Stack Digital Marketing</strong> program to combine my financial analytical foundation with Meta Ads strategy.

@@ -14,9 +14,9 @@ interface MetricItem {
 const metrics: MetricItem[] = [
   {
     icon: TrendingUp,
-    value: 'Rp 10B+',
-    label: 'Monthly Financing Portfolio',
-    description: 'Cashflow & commercial credit analysis in banking, grounding every ad dollar in financial return.',
+    value: 'Banking',
+    label: 'Commercial Background',
+    description: 'Experience with cash flow and commercial credit analysis informs a disciplined approach to marketing.',
     gradient: 'from-rose-500/20 via-pink-500/5 to-transparent',
     iconColor: 'text-rose-400',
   },

@@ -153,7 +153,7 @@ export default function ContactSection() {
               </div>
             </div>
 
-            <div className="pt-4 border-t border-white/10 flex items-center justify-between">
+            <div className="pt-4 border-t border-white/10 flex flex-wrap items-center justify-between gap-3">
               <a 
                 href={waUrl}
                 target="_blank"
@@ -165,7 +165,7 @@ export default function ContactSection() {
               <button
                 type="button"
                 onClick={() => copyToClipboard(phone, 'phone')}
-                className="inline-flex items-center gap-1.5 text-xs text-slate-400 hover:text-white transition-colors cursor-pointer"
+                className="inline-flex shrink-0 items-center gap-1.5 whitespace-nowrap text-xs text-slate-400 hover:text-white transition-colors cursor-pointer"
               >
                 {copiedPhone ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
                 <span>{copiedPhone ? 'Copied' : 'Copy'}</span>

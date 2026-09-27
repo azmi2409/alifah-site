@@ -82,7 +82,7 @@ const experiences: ExperienceItem[] = [
     badgeColor: 'bg-amber-400/10 text-amber-300 border-amber-400/25',
     award: 'Top 3 Best Achievement Account Officer PT Bank BRISyariah Tbk (2020) & Photo Talent of 2019 Annual Report',
     points: [
-      'Target achievement by reaching consumer & commercial customers of loan financing products with up to Rp 10 billion per month.',
+      'Worked with consumer and commercial customers on loan financing products.',
       'Reviewed and analyzed cash flow, financial statements, and complete credit reports for 10 commercial accounts monthly.',
       'Maintained proactive communication and portfolio management for an existing database of 100+ clients per month.',
       'Awarded Top 3 Best Achievement of Account Officer PT Bank BRISyariah Tbk nationwide in 2020.',

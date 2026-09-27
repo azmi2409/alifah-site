@@ -54,7 +54,7 @@ export default function SkillsSection() {
       iconColor: 'text-amber-300',
       skills: [
         { name: 'High-Value Client Relationship Management', level: '100+ Accounts/mo' },
-        { name: 'Commercial Loan & Financing Deals', level: 'Up to Rp 10B/mo' },
+        { name: 'Commercial Loan & Financing Deals', level: 'Banking Background' },
         { name: 'Stakeholder Presentations & Pitches', level: 'Top 3 BRISyariah 2020' },
         { name: 'Financial Advisory & Wealth Planning', level: 'BNI Life & BSI' },
         { name: 'Cross-functional Collaboration', level: 'Advanced' },
@@ -101,8 +101,8 @@ export default function SkillsSection() {
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
                 whileHover={{ y: -4 }}
               >
-                <div className="flex items-center justify-between mb-6">
-                  <div className="flex items-center gap-3">
+                <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
+                  <div className="flex min-w-0 items-center gap-3">
                     <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center">
                       <Icon className={`w-5 h-5 ${cat.iconColor}`} />
                     </div>
@@ -110,7 +110,7 @@ export default function SkillsSection() {
                       {cat.title}
                     </h3>
                   </div>
-                  <span className={`text-[11px] font-bold px-2.5 py-0.5 rounded-full border ${cat.badgeColor}`}>
+                  <span className={`shrink-0 whitespace-nowrap text-[11px] font-bold px-2.5 py-0.5 rounded-full border ${cat.badgeColor}`}>
                     {cat.tag}
                   </span>
                 </div>

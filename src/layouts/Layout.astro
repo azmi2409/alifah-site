@@ -6,13 +6,15 @@ interface Props {
   description?: string;
   canonicalUrl?: string;
   ogImage?: string;
+  noindex?: boolean;
 }
 
 const {
-  title = "Alifah Azhar Nurhazmi | Digital Marketer & Meta Ads Specialist",
-  description = "Portfolio of Alifah Azhar Nurhazmi — Performance Marketer & Meta Ads Specialist. Former commercial banker managing Rp 10B+/mo credit portfolios, combining financial discipline with high-converting Meta Ads, A/B creative testing, and Looker Studio attribution.",
-  canonicalUrl = "https://alifahazhar.com",
-  ogImage = "https://alifahazhar.com/images/alifah.webp",
+  title = "Alifah Azhar Nurhazmi | Performance Marketer & Meta Ads Specialist",
+  description = "Portfolio of Alifah Azhar Nurhazmi — Performance Marketer & Meta Ads Specialist. Former commercial banker combining financial discipline with Meta Ads, A/B creative testing, and Looker Studio reporting.",
+  canonicalUrl = "https://alifah.my.id/",
+  ogImage = "https://alifah.my.id/images/alifah.webp",
+  noindex = false,
 } = Astro.props;
 
 // Comprehensive JSON-LD Structured Data for Google Rich Results & AIO / AI Overviews (Perplexity, ChatGPT, Gemini, Copilot)
@@ -21,35 +23,35 @@ const structuredData = {
   "@graph": [
     {
       "@type": "WebSite",
-      "@id": "https://alifahazhar.com/#website",
-      "url": "https://alifahazhar.com",
+      "@id": "https://alifah.my.id/#website",
+      "url": "https://alifah.my.id/",
       "name": "Alifah Azhar Nurhazmi — Portfolio",
       "description": description,
       "inLanguage": "en-US",
       "publisher": {
-        "@id": "https://alifahazhar.com/#person"
+        "@id": "https://alifah.my.id/#person"
       }
     },
     {
       "@type": "ProfilePage",
-      "@id": "https://alifahazhar.com/#profilepage",
-      "url": "https://alifahazhar.com",
+      "@id": "https://alifah.my.id/#profilepage",
+      "url": "https://alifah.my.id/",
       "name": title,
       "isPartOf": {
-        "@id": "https://alifahazhar.com/#website"
+        "@id": "https://alifah.my.id/#website"
       },
       "mainEntity": {
-        "@id": "https://alifahazhar.com/#person"
+        "@id": "https://alifah.my.id/#person"
       }
     },
     {
       "@type": "Person",
-      "@id": "https://alifahazhar.com/#person",
+      "@id": "https://alifah.my.id/#person",
       "name": "Alifah Azhar Nurhazmi",
       "alternateName": ["Alifah Azhar", "Alifah"],
       "jobTitle": "Performance Marketer & Meta Ads Specialist",
-      "description": "Former commercial banker managing Rp 10B+/month commercial financing portfolios, now scaling brands through Meta Ads Manager, A/B creative testing, and Looker Studio attribution.",
-      "url": "https://alifahazhar.com",
+      "description": "Former commercial banker now working in performance marketing through Meta Ads, A/B creative testing, and Looker Studio reporting.",
+      "url": "https://alifah.my.id/",
       "image": {
         "@type": "ImageObject",
         "url": ogImage,
@@ -97,7 +99,7 @@ const structuredData = {
     },
     {
       "@type": "ItemList",
-      "@id": "https://alifahazhar.com/#casestudies",
+      "@id": "https://alifah.my.id/#casestudies",
       "name": "Featured Case Studies & Client Campaigns",
       "itemListElement": [
         {
@@ -128,14 +130,14 @@ const structuredData = {
     },
     {
       "@type": "FAQPage",
-      "@id": "https://alifahazhar.com/#faq",
+      "@id": "https://alifah.my.id/#faq",
       "mainEntity": [
         {
           "@type": "Question",
           "name": "Who is Alifah Azhar Nurhazmi?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Alifah Azhar Nurhazmi is an Indonesian Performance Marketer and Meta Ads Specialist based in Bekasi, West Java. She previously worked in commercial banking at PT Bank BRISyariah Tbk (managing Rp 10B+/month commercial financing) and BNI Life before graduating from RevoU Full Stack Digital Marketing."
+            "text": "Alifah Azhar Nurhazmi is an Indonesian Performance Marketer and Meta Ads Specialist based in Bekasi, West Java. She previously worked in commercial banking at PT Bank BRISyariah Tbk and BNI Life before graduating from RevoU Full Stack Digital Marketing."
           }
         },
         {
@@ -195,9 +197,9 @@ const structuredData = {
     <meta name="keywords" content="Alifah Azhar, Alifah Azhar Nurhazmi, Meta Ads Specialist, Facebook Ads Specialist, Digital Marketer Indonesia, Performance Marketing, RevoU, Bogor Agricultural University, Looker Studio Reporting, CBO, ABO, Paid Acquisition" />
     
     <!-- Search Engine Indexing & Bot Directives -->
-    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
-    <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
-    <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="robots" content={noindex ? "noindex, follow" : "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"} />
+    {!noindex && <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />}
+    {!noindex && <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />}
     
     <!-- AI Optimization (AIO / GEO) Discovery Links -->
     <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM Context Summary" />
