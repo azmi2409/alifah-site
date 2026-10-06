@@ -2,13 +2,24 @@
 
 > Former Commercial Banker combining rigorous financial discipline with high-converting Meta Ads, systematic A/B creative testing, and Looker Studio attribution.
 
+## Site Pages
+- [Home](https://www.alifah.my.id/): Overview, positioning, featured work and FAQ
+- [Work / Case Studies](https://www.alifah.my.id/work/): All client campaigns
+  - [Bonsai Sushi](https://www.alifah.my.id/work/bonsai-sushi/)
+  - [Kowara Eatery Group](https://www.alifah.my.id/work/kowara-eatery/)
+  - [Indental Clinic Surabaya](https://www.alifah.my.id/work/indental-clinic/)
+  - [Bali WISE](https://www.alifah.my.id/work/bali-wise/)
+- [Approach & Skills](https://www.alifah.my.id/approach/): Three-step Meta Ads method and skill stack
+- [Experience & Education](https://www.alifah.my.id/experience/): Career timeline (banking to marketing), IPB and RevoU
+- [Contact](https://www.alifah.my.id/contact/): WhatsApp, email, LinkedIn
+
 ## Summary & Positioning
 - **Full Name**: Alifah Azhar Nurhazmi
 - **Known As**: Alifah Azhar
 - **Title**: Performance Marketer & Meta Ads Specialist
 - **Background**: Commercial banking experience at PT Bank BRISyariah Tbk and BNI Life; transitioned into digital marketing with a focus on Meta Ads, creative testing, and reporting.
 - **Location**: Bekasi, West Java, Indonesia
-- **Current Status**: Open for high-impact Meta Ads consulting, contract growth roles, and paid acquisition projects. Stay-at-home mom and lifelong learner.
+- **Current Status**: Open for Meta Ads consulting, contract performance-marketing roles, and paid acquisition projects (remote, Indonesia). Stay-at-home mom and lifelong learner.
 - **Languages**: Indonesian (Native), English (Professional Working)
 
 ## Key Achievements & Metrics
@@ -24,16 +35,16 @@
 - **Commercial & Advisory**: Client relationship management (100+ active business accounts), stakeholder presentations, commercial loan & financing structuring.
 
 ## Case Studies
-1. **Bonsai Sushi (March 2023 – April 2023 | Cibubur, Jakarta)**
+1. [**Bonsai Sushi**](https://www.alifah.my.id/work/bonsai-sushi/) (March 2023 – April 2023 | Cibubur, Jakarta)
    - Role: Digital Marketing Specialist
    - Scope: End-to-end Meta Ads & Instagram creative strategy; full-funnel prospecting to retargeting; multi-format A/B testing driving physical restaurant footfall and delivery orders.
-2. **Kowara Eatery Group (January 2023 – February 2023 | Jakarta)**
+2. [**Kowara Eatery Group**](https://www.alifah.my.id/work/kowara-eatery/) (January 2023 – February 2023 | Jakarta)
    - Role: Performance Marketing (RevoU Labs)
    - Scope: Managed Facebook Ads account for expanding Asian fusion F&B group; automated bi-weekly Google Data Studio dashboards; audience segmentation and dynamic budget pacing.
-3. **Indental Clinic Surabaya (October 2022 – December 2022 | Surabaya, East Java)**
+3. [**Indental Clinic Surabaya**](https://www.alifah.my.id/work/indental-clinic/) (October 2022 – December 2022 | Surabaya, East Java)
    - Role: Performance Marketing (RevoU Labs)
    - Scope: Precision geo-targeted Meta ad campaigns driving patient bookings for painless dental care and cosmetic dentistry; Looker Studio attribution reporting.
-4. **Bali WISE Non-Profit (November 2022 | Nusa Dua, Bali)**
+4. [**Bali WISE Non-Profit**](https://www.alifah.my.id/work/bali-wise/) (November 2022 | Nusa Dua, Bali)
    - Role: Social Media Module Writer
    - Scope: Authored comprehensive vocational education curriculum on social media advertising for marginalized Indonesian women.
 
@@ -48,3 +59,9 @@
 - **Email**: alifahazhar@gmail.com
 - **LinkedIn**: [https://linkedin.com/in/alifahazhar](https://linkedin.com/in/alifahazhar)
 - **Website**: [https://www.alifah.my.id](https://www.alifah.my.id)
+
+## Frequently Asked Questions
+- **What does Alifah do?** Meta (Facebook & Instagram) Ads management, audience architecture, A/B creative and hook testing, Instagram content planning, and Looker Studio reporting (ROAS, CPA, CTR).
+- **Which industries?** F&B and restaurants, healthcare and aesthetics, and non-profit vocational education.
+- **Why does a banking background matter?** Ad spend is treated as an investment tied to CPA and ROAS, with results reported in plain business terms.
+- **How to hire?** WhatsApp +62 812 5948 8390 or email alifahazhar@gmail.com.

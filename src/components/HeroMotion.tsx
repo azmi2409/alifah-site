@@ -46,7 +46,7 @@ export default function HeroMotion() {
             </p>
 
             <div className="mt-10 flex flex-wrap items-center gap-3">
-              <a href="#case-studies" className="btn-hero">
+              <a href="/work/" className="btn-hero">
                 Explore work <ArrowUpRight aria-hidden="true" className="h-4 w-4" />
               </a>
               <a href="https://wa.me/6281259488390?text=Hi%20Alifah,%20I%20saw%20your%20portfolio%20and%20would%20love%20to%20discuss%20a%20digital%20marketing%20project!" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-12 items-center rounded-full border border-white/30 px-6 text-sm font-semibold text-white transition-colors hover:border-rose-300 hover:text-rose-200">

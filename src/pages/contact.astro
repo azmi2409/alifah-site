@@ -1,0 +1,27 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import ContactSection from '../components/ContactSection';
+import PageLinks from '../components/PageLinks.astro';
+import Footer from '../components/Footer.astro';
+
+const crumbs = [{ name: 'Contact', path: '/contact/' }];
+---
+
+<Layout
+  title="Contact Alifah Azhar | Hire a Meta Ads Specialist in Indonesia"
+  description="Contact Alifah Azhar Nurhazmi for Meta Ads consulting, contract performance-marketing roles or paid acquisition projects. WhatsApp, email or LinkedIn. Based in Bekasi, Indonesia."
+  pageType="ContactPage"
+  breadcrumbs={crumbs}
+>
+  <Navbar />
+
+  <main id="main">
+    <Breadcrumbs crumbs={crumbs} />
+    <ContactSection headingLevel="h1" client:visible />
+    <PageLinks />
+  </main>
+
+  <Footer />
+</Layout>

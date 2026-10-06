@@ -1,0 +1,48 @@
+---
+// "Keep exploring" cards linking to the other top-level pages.
+interface Props {
+  exclude?: string;
+}
+
+const { exclude } = Astro.props;
+
+const pages = [
+  {
+    href: '/work/',
+    eyebrow: 'Case studies',
+    title: 'Client work',
+    text: 'Meta Ads campaigns for F&B, a dental clinic and a non-profit, with full scope per project.',
+  },
+  {
+    href: '/approach/',
+    eyebrow: 'Method & skills',
+    title: 'How I run campaigns',
+    text: 'The three-step engine: audience architecture, creative testing, and Looker Studio reporting.',
+  },
+  {
+    href: '/experience/',
+    eyebrow: 'Career',
+    title: 'Experience & education',
+    text: 'From Top 3 account officer at Bank BRISyariah to performance marketing, plus IPB and RevoU.',
+  },
+].filter((page) => page.href !== exclude);
+---
+
+<section class="py-14 sm:py-16 border-t border-white/5" aria-labelledby="explore-heading">
+  <div class="site-container">
+    <h2 id="explore-heading" class="text-xs font-bold uppercase tracking-[.16em] text-rose-300 mb-6">Keep exploring</h2>
+    <ul class:list={['grid gap-5', pages.length > 2 ? 'md:grid-cols-3' : 'md:grid-cols-2']}>
+      {pages.map((page) => (
+        <li>
+          <a href={page.href} class="glass-panel group flex h-full flex-col border border-white/10 p-6 hover:border-rose-400/40">
+            <span class="text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-2">{page.eyebrow}</span>
+            <span class="text-lg font-bold text-white group-hover:text-rose-200 transition-colors mb-2">
+              {page.title} <span aria-hidden="true" class="inline-block transition-transform group-hover:translate-x-1">→</span>
+            </span>
+            <span class="text-sm text-slate-300 leading-relaxed">{page.text}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>

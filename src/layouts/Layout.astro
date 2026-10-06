@@ -1,63 +1,105 @@
 ---
 import '../styles/global.css';
+import { SITE_URL, PERSON_NAME, JOB_TITLE, EMAIL, LINKEDIN_URL, absoluteUrl } from '../data/site';
+
+interface Crumb {
+  name: string;
+  path: string;
+}
 
 interface Props {
   title?: string;
   description?: string;
   canonicalUrl?: string;
   ogImage?: string;
+  ogImageWidth?: number;
+  ogImageHeight?: number;
+  ogImageAlt?: string;
+  ogType?: 'profile' | 'website' | 'article';
+  /** schema.org type of this page's WebPage node */
+  pageType?: 'ProfilePage' | 'WebPage' | 'CollectionPage' | 'ContactPage' | 'AboutPage';
+  /** Trail after Home, used for BreadcrumbList structured data */
+  breadcrumbs?: Crumb[];
+  /** Extra JSON-LD nodes appended to the page graph */
+  schema?: Record<string, unknown>[];
   noindex?: boolean;
 }
 
 const {
-  title = "Alifah Azhar Nurhazmi | Performance Marketer & Meta Ads Specialist",
-  description = "Portfolio of Alifah Azhar Nurhazmi — Performance Marketer & Meta Ads Specialist. Former commercial banker combining financial discipline with Meta Ads, A/B creative testing, and Looker Studio reporting.",
-  canonicalUrl = "https://www.alifah.my.id/",
-  ogImage = "https://www.alifah.my.id/images/alifah.webp",
+  title = `${PERSON_NAME} | ${JOB_TITLE}`,
+  description = `Portfolio of ${PERSON_NAME} — ${JOB_TITLE}. Former commercial banker combining financial discipline with Meta Ads, A/B creative testing, and Looker Studio reporting.`,
+  canonicalUrl = absoluteUrl(Astro.url.pathname),
+  ogImage = absoluteUrl('/images/alifah.webp'),
+  ogImageWidth = 800,
+  ogImageHeight = 800,
+  ogImageAlt = `${PERSON_NAME} - ${JOB_TITLE}`,
+  ogType = 'website',
+  pageType = 'WebPage',
+  breadcrumbs = [],
+  schema = [],
   noindex = false,
 } = Astro.props;
 
-// Comprehensive JSON-LD Structured Data for Google Rich Results & AIO / AI Overviews (Perplexity, ChatGPT, Gemini, Copilot)
+const ogImageType = ogImage.endsWith('.jpg') || ogImage.endsWith('.jpeg') ? 'image/jpeg' : ogImage.endsWith('.png') ? 'image/png' : 'image/webp';
+const personId = `${SITE_URL}/#person`;
+const websiteId = `${SITE_URL}/#website`;
+const breadcrumbId = `${canonicalUrl}#breadcrumb`;
+
+// JSON-LD graph for search engines and AI answer engines (Google AI Overviews, ChatGPT, Perplexity, Gemini, Copilot)
 const structuredData = {
   "@context": "https://schema.org",
   "@graph": [
     {
       "@type": "WebSite",
-      "@id": "https://www.alifah.my.id/#website",
-      "url": "https://www.alifah.my.id/",
-      "name": "Alifah Azhar Nurhazmi — Portfolio",
+      "@id": websiteId,
+      "url": `${SITE_URL}/`,
+      "name": `${PERSON_NAME} — Portfolio`,
+      "alternateName": "Alifah Azhar Portfolio",
+      "description": `Portfolio of ${PERSON_NAME}, ${JOB_TITLE} based in Bekasi, Indonesia.`,
+      "inLanguage": "en-US",
+      "publisher": { "@id": personId }
+    },
+    {
+      "@type": pageType,
+      "@id": `${canonicalUrl}#webpage`,
+      "url": canonicalUrl,
+      "name": title,
       "description": description,
       "inLanguage": "en-US",
-      "publisher": {
-        "@id": "https://www.alifah.my.id/#person"
-      }
+      "isPartOf": { "@id": websiteId },
+      "about": { "@id": personId },
+      ...(pageType === 'ProfilePage' ? { "mainEntity": { "@id": personId } } : {}),
+      "primaryImageOfPage": { "@type": "ImageObject", "url": ogImage, "width": ogImageWidth, "height": ogImageHeight },
+      ...(breadcrumbs.length ? { "breadcrumb": { "@id": breadcrumbId } } : {})
     },
-    {
-      "@type": "ProfilePage",
-      "@id": "https://www.alifah.my.id/#profilepage",
-      "url": "https://www.alifah.my.id/",
-      "name": title,
-      "isPartOf": {
-        "@id": "https://www.alifah.my.id/#website"
-      },
-      "mainEntity": {
-        "@id": "https://www.alifah.my.id/#person"
-      }
-    },
+    ...(breadcrumbs.length ? [{
+      "@type": "BreadcrumbList",
+      "@id": breadcrumbId,
+      "itemListElement": [{ name: 'Home', path: '/' }, ...breadcrumbs].map((crumb, i) => ({
+        "@type": "ListItem",
+        "position": i + 1,
+        "name": crumb.name,
+        "item": absoluteUrl(crumb.path)
+      }))
+    }] : []),
     {
       "@type": "Person",
-      "@id": "https://www.alifah.my.id/#person",
-      "name": "Alifah Azhar Nurhazmi",
+      "@id": personId,
+      "name": PERSON_NAME,
+      "givenName": "Alifah Azhar",
+      "familyName": "Nurhazmi",
       "alternateName": ["Alifah Azhar", "Alifah"],
-      "jobTitle": "Performance Marketer & Meta Ads Specialist",
+      "jobTitle": JOB_TITLE,
       "description": "Former commercial banker now working in performance marketing through Meta Ads, A/B creative testing, and Looker Studio reporting.",
-      "url": "https://www.alifah.my.id/",
+      "url": `${SITE_URL}/`,
       "image": {
         "@type": "ImageObject",
-        "url": ogImage,
-        "caption": "Alifah Azhar Nurhazmi - Performance Marketer & Meta Ads Specialist"
+        "url": absoluteUrl('/images/alifah.webp'),
+        "width": 800,
+        "height": 800,
+        "caption": `${PERSON_NAME} - ${JOB_TITLE}`
       },
-      "email": "mailto:alifahazhar@gmail.com",
+      "email": `mailto:${EMAIL}`,
       "telephone": "+6281259488390",
       "address": {
         "@type": "PostalAddress",
@@ -65,10 +107,8 @@ const structuredData = {
         "addressRegion": "West Java",
         "addressCountry": "ID"
       },
-      "sameAs": [
-        "https://linkedin.com/in/alifahazhar",
-        "https://wa.me/6281259488390"
-      ],
+      "knowsLanguage": ["id", "en"],
+      "sameAs": [LINKEDIN_URL],
       "alumniOf": [
         {
           "@type": "CollegeOrUniversity",
@@ -81,6 +121,12 @@ const structuredData = {
           "description": "Full Stack Digital Marketing (FSDM)"
         }
       ],
+      "hasOccupation": {
+        "@type": "Occupation",
+        "name": JOB_TITLE,
+        "occupationLocation": { "@type": "Country", "name": "Indonesia" },
+        "skills": "Meta Ads Manager, campaign budget optimization, A/B creative testing, audience segmentation, Looker Studio reporting, ROAS and CPA analysis"
+      },
       "knowsAbout": [
         "Meta Ads Manager",
         "Performance Marketing",
@@ -97,37 +143,7 @@ const structuredData = {
         "Top 3 Best Achievement Account Officer PT Bank BRISyariah Tbk (2020)"
       ]
     },
-    {
-      "@type": "ItemList",
-      "@id": "https://www.alifah.my.id/#casestudies",
-      "name": "Featured Case Studies & Client Campaigns",
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "name": "Bonsai Sushi — End-to-End Meta Ads & Instagram Creative Strategy",
-          "description": "Full-funnel paid acquisition strategy combining targeted Facebook Ads and Google Display Ads with hands-on Instagram content planning and creative ad design in Cibubur, Jakarta."
-        },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "name": "Kowara Eatery Group — Performance Marketing & Looker Studio Attribution",
-          "description": "Managed Facebook Ads accounts via RevoU Labs, executing rigorous A/B testing and delivering automated Google Data Studio reporting for an expanding Asian fusion group."
-        },
-        {
-          "@type": "ListItem",
-          "position": 3,
-          "name": "Indental Clinic Surabaya — High-Intent Dental Care & Beauty Paid Acquisition",
-          "description": "Precision geo-targeted Facebook Ads campaign for a premier Surabaya dental clinic, driving patient inquiries for routine dental care and cosmetic dentistry."
-        },
-        {
-          "@type": "ListItem",
-          "position": 4,
-          "name": "Bali WISE Non-Profit — Social Media Advertising Vocational Curriculum",
-          "description": "Developed a comprehensive educational module on social media advertising for Bali WISE, empowering marginalized Indonesian women with practical job-ready digital marketing skills."
-        }
-      ]
-    }
+    ...schema
   ]
 };
 ---
@@ -181,19 +197,20 @@ const structuredData = {
     
     <!-- AI Optimization (AIO / GEO) Discovery Links -->
     <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM Context Summary" />
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
 
     <!-- Open Graph / Facebook / LinkedIn / WhatsApp -->
-    <meta property="og:type" content="profile" />
+    <meta property="og:type" content={ogType} />
     <meta property="og:site_name" content="Alifah Azhar Portfolio" />
     <meta property="og:locale" content="en_US" />
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImage} />
-    <meta property="og:image:width" content="800" />
-    <meta property="og:image:height" content="800" />
-    <meta property="og:image:alt" content="Alifah Azhar Nurhazmi - Performance Marketer & Meta Ads Specialist" />
-    <meta property="og:image:type" content="image/webp" />
+    <meta property="og:image:width" content={String(ogImageWidth)} />
+    <meta property="og:image:height" content={String(ogImageHeight)} />
+    <meta property="og:image:alt" content={ogImageAlt} />
+    <meta property="og:image:type" content={ogImageType} />
 
     <!-- Twitter / X Cards -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -201,7 +218,7 @@ const structuredData = {
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
-    <meta name="twitter:image:alt" content="Alifah Azhar Nurhazmi - Performance Marketer & Meta Ads Specialist" />
+    <meta name="twitter:image:alt" content={ogImageAlt} />
 
     <!-- Mobile App & Browser UI Optimization -->
     <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -217,7 +234,8 @@ const structuredData = {
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
   </head>
-  <body>
+  <body id="top">
+    <a href="#main" class="skip-link">Skip to content</a>
     <div class="scroll-progress" aria-hidden="true"></div>
     <slot />
 

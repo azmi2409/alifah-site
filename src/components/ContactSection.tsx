@@ -3,7 +3,8 @@ import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Send, Copy, Check, ArrowUpRight, Sparkles, Heart } from 'lucide-react';
 import AuroraGL from './AuroraGL';
 
-export default function ContactSection() {
+export default function ContactSection({ headingLevel = 'h2' }: { headingLevel?: 'h1' | 'h2' }) {
+  const Heading = headingLevel;
   const [copiedEmail, setCopiedEmail] = useState(false);
   const [copiedPhone, setCopiedPhone] = useState(false);
 
@@ -43,7 +44,7 @@ export default function ContactSection() {
   };
 
   return (
-    <section id="contact" className="py-24 relative overflow-hidden">
+    <section id="contact" className="py-16 sm:py-20 relative overflow-hidden">
       {/* Background ambient lighting */}
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-rose-500/15 rounded-full blur-[140px] pointer-events-none -z-10" />
 
@@ -65,9 +66,9 @@ export default function ContactSection() {
                 Let's Build Something Great Together
               </span>
               
-              <h2 className="text-2xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight mb-6 break-words">
+              <Heading className="text-2xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight mb-6 break-words">
                 Ready to Scale Your Paid Acquisition with <span className="text-gradient-rose">Real ROI</span>?
-              </h2>
+              </Heading>
 
               <p className="text-base sm:text-lg text-slate-300 leading-relaxed mb-10 max-w-2xl mx-auto">
                 "I’m a forever learner and welcome any opportunity on things to do that challenges me. Feel free to reach me at any time! :)"

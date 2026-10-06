@@ -33,7 +33,7 @@ export default function EducationCertifications() {
   ];
 
   return (
-    <section className="py-20 relative border-t border-white/5 bg-slate-950/20">
+    <section className="py-16 sm:py-20 relative border-t border-white/5 bg-slate-950/20">
       <div className="site-container">
         
         {/* Header */}

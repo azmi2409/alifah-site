@@ -43,11 +43,11 @@ export default function AboutSection() {
   ];
 
   return (
-    <section id="about" className="py-24 relative overflow-hidden">
+    <section id="about" className="py-16 sm:py-20 relative overflow-hidden">
       <div className="site-container">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <div className="text-center max-w-3xl mx-auto mb-12">
           <motion.div
             initial={false}
             whileInView={{ opacity: 1, y: 0 }}
