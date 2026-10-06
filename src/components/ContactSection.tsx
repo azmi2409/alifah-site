@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Send, Copy, Check, ArrowUpRight, Sparkles, Heart } from 'lucide-react';
+import AuroraGL from './AuroraGL';
 
 export default function ContactSection() {
   const [copiedEmail, setCopiedEmail] = useState(false);
@@ -49,8 +50,9 @@ export default function ContactSection() {
       <div className="site-container">
         
         {/* Main CTA Banner */}
-        <div className="glass-panel p-8 sm:p-14 border border-rose-400/25 relative overflow-hidden mb-12">
-          <div className="max-w-3xl mx-auto text-center">
+        <div className="glass-panel p-8 sm:p-14 border border-rose-400/25 relative isolate overflow-hidden mb-12">
+          <AuroraGL className="-z-10" />
+          <div className="relative max-w-3xl mx-auto text-center">
             
             <motion.div
             initial={false}
