@@ -138,7 +138,23 @@ const structuredData = {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#0c0a12" />
-    <meta name="color-scheme" content="dark" />
+    <meta name="color-scheme" content="light dark" />
+
+    <!-- Resolve theme before first paint to avoid a flash of the wrong theme -->
+    <script is:inline>
+      (() => {
+        let pref = 'system';
+        try {
+          const stored = localStorage.getItem('theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') pref = stored;
+        } catch {}
+        const theme = pref === 'system' ? (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : pref;
+        const root = document.documentElement;
+        root.dataset.themePref = pref;
+        root.dataset.theme = theme;
+        document.querySelector('meta[name="theme-color"]')?.setAttribute('content', theme === 'dark' ? '#0c0a12' : '#fbf7f4');
+      })();
+    </script>
     
     <!-- Canonical URL -->
     <link rel="canonical" href={canonicalUrl} />
@@ -202,6 +218,7 @@ const structuredData = {
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
   </head>
   <body>
+    <div class="scroll-progress" aria-hidden="true"></div>
     <slot />
 
     <!-- Toast Notification element -->
@@ -214,6 +231,15 @@ const structuredData = {
     </div>
 
     <script>
+      // Reading progress
+      const updateProgress = () => {
+        const max = document.documentElement.scrollHeight - innerHeight;
+        document.documentElement.style.setProperty('--progress', String(max > 0 ? Math.min(scrollY / max, 1) : 0));
+      };
+      addEventListener('scroll', updateProgress, { passive: true });
+      addEventListener('resize', updateProgress);
+      updateProgress();
+
       // Global toast helper
       let toastTimer: any = null;
       (window as any).showToast = (msg: string) => {

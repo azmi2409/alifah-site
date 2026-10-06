@@ -1,6 +1,7 @@
 ---
 // Navbar.astro
 import BrandLogo from './BrandLogo.astro';
+import ThemeToggle from './ThemeToggle.astro';
 ---
 
 <header class="navbar-wrapper">
@@ -21,6 +22,8 @@ import BrandLogo from './BrandLogo.astro';
 
       <!-- Action Buttons -->
       <div class="nav-actions">
+        <ThemeToggle class="nav-theme-toggle" />
+
         <a 
           href="https://wa.me/6281259488390?text=Hi%20Alifah,%20I%20saw%20your%20portfolio%20and%20would%20love%20to%20connect!" 
           target="_blank" 
@@ -39,7 +42,7 @@ import BrandLogo from './BrandLogo.astro';
         </a>
 
         <!-- Mobile Menu Toggle Button -->
-        <button id="mobile-toggle" class="mobile-toggle-btn" aria-label="Toggle Navigation Menu">
+        <button id="mobile-toggle" class="mobile-toggle-btn" aria-label="Toggle Navigation Menu" aria-expanded="false" aria-controls="mobile-menu">
           <svg class="icon-menu" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <line x1="3" y1="12" x2="21" y2="12"></line>
             <line x1="3" y1="6" x2="21" y2="6"></line>
@@ -64,6 +67,10 @@ import BrandLogo from './BrandLogo.astro';
       <li><a href="#experience" class="mobile-nav-item">Experience</a></li>
       <li><a href="#contact" class="mobile-nav-item">Contact & Inquiries</a></li>
     </ul>
+    <div class="mobile-theme-row">
+      <span>Appearance</span>
+      <ThemeToggle />
+    </div>
     <div class="mobile-cta-group">
       <a 
         href="https://wa.me/6281259488390?text=Hi%20Alifah,%20I%20saw%20your%20portfolio%20and%20would%20love%20to%20connect!" 
@@ -96,10 +103,24 @@ import BrandLogo from './BrandLogo.astro';
     justify-content: space-between;
     padding: 0.6rem 1.15rem;
     border-radius: 9999px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    background: rgba(20, 16, 30, 0.88);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--border-subtle);
+    background: var(--bg-elevated);
+    backdrop-filter: blur(20px) saturate(140%);
+    -webkit-backdrop-filter: blur(20px) saturate(140%);
+    transition: padding 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+  }
+
+  .navbar-wrapper {
+    transition: top 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .navbar-wrapper.scrolled {
+    top: 0.6rem;
+  }
+
+  .navbar-wrapper.scrolled .navbar {
+    box-shadow: var(--shadow-card);
+    border-color: var(--border-strong);
   }
 
   @media (max-width: 640px) {
@@ -159,14 +180,15 @@ import BrandLogo from './BrandLogo.astro';
   .nav-item {
     font-size: 0.9rem;
     font-weight: 500;
-    color: #cbd5e1;
+    color: var(--text-secondary);
     transition: color 0.2s ease;
     position: relative;
     padding: 0.25rem 0;
   }
 
-  .nav-item:hover {
-    color: #fda4af;
+  .nav-item:hover,
+  .nav-item.active {
+    color: var(--accent-text);
   }
 
   .nav-item::after {
@@ -176,12 +198,13 @@ import BrandLogo from './BrandLogo.astro';
     left: 0;
     width: 0;
     height: 2px;
-    background: #fb7185;
+    background: var(--accent-strong);
     transition: width 0.25s ease;
     border-radius: 9999px;
   }
 
-  .nav-item:hover::after {
+  .nav-item:hover::after,
+  .nav-item.active::after {
     width: 100%;
   }
 
@@ -217,8 +240,18 @@ import BrandLogo from './BrandLogo.astro';
     padding: 1.5rem;
     flex-direction: column;
     gap: 1.25rem;
-    background: rgba(20, 16, 30, 0.96);
-    border: 1px solid rgba(251, 113, 133, 0.25);
+    background: var(--bg-elevated-solid);
+    border: 1px solid var(--border-rose);
+    box-shadow: var(--shadow-card);
+  }
+
+  .mobile-theme-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-muted);
   }
 
   .mobile-menu.open {
@@ -239,12 +272,13 @@ import BrandLogo from './BrandLogo.astro';
     padding: 0.6rem 0.5rem;
     font-size: 1rem;
     font-weight: 500;
-    color: #cbd5e1;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    color: var(--text-secondary);
+    border-bottom: 1px solid var(--border-subtle);
   }
 
-  .mobile-nav-item:hover {
-    color: #fda4af;
+  .mobile-nav-item:hover,
+  .mobile-nav-item.active {
+    color: var(--accent-text);
   }
 
   @media (max-width: 960px) {
@@ -274,6 +308,15 @@ import BrandLogo from './BrandLogo.astro';
     .brand-sub {
       display: none;
     }
+    .nav-actions :global(.nav-theme-toggle) {
+      display: none;
+    }
+  }
+
+  @media (min-width: 961px) and (max-width: 1100px) {
+    .nav-links {
+      gap: 1.15rem;
+    }
   }
 </style>
 
@@ -284,15 +327,42 @@ import BrandLogo from './BrandLogo.astro';
 
   if (toggleBtn && mobileMenu) {
     toggleBtn.addEventListener('click', () => {
-      toggleBtn.classList.toggle('active');
-      mobileMenu.classList.toggle('open');
+      const open = mobileMenu.classList.toggle('open');
+      toggleBtn.classList.toggle('active', open);
+      toggleBtn.setAttribute('aria-expanded', String(open));
     });
 
     mobileLinks.forEach(link => {
       link.addEventListener('click', () => {
         toggleBtn.classList.remove('active');
         mobileMenu.classList.remove('open');
+        toggleBtn.setAttribute('aria-expanded', 'false');
       });
     });
   }
+
+  // Compact navbar once the page scrolls
+  const wrapper = document.querySelector('.navbar-wrapper');
+  const onScroll = () => wrapper?.classList.toggle('scrolled', window.scrollY > 24);
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // Scrollspy: highlight the section currently in view
+  const links = document.querySelectorAll<HTMLAnchorElement>('.nav-item, .mobile-nav-item');
+  const sections = Array.from(new Set(Array.from(links, (link) => link.hash)))
+    .map((hash) => document.querySelector<HTMLElement>(hash))
+    .filter((section): section is HTMLElement => Boolean(section));
+
+  const spy = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      links.forEach((link) => {
+        const active = link.hash === `#${entry.target.id}`;
+        link.classList.toggle('active', active);
+        if (active) link.setAttribute('aria-current', 'true');
+        else link.removeAttribute('aria-current');
+      });
+    });
+  }, { rootMargin: '-45% 0px -50% 0px' });
+  sections.forEach((section) => spy.observe(section));
 </script>

@@ -1,0 +1,157 @@
+---
+// ThemeToggle.astro - Light / System / Dark segmented switch.
+// State lives on <html data-theme-pref>; the inline script in Layout.astro applies it before paint.
+interface Props {
+  class?: string;
+}
+
+const { class: className = '' } = Astro.props;
+
+const options = [
+  { value: 'light', label: 'Light theme' },
+  { value: 'system', label: 'Match system theme' },
+  { value: 'dark', label: 'Dark theme' },
+] as const;
+---
+
+<div class={`theme-toggle ${className}`} role="group" aria-label="Color theme" data-theme-toggle>
+  <span class="theme-toggle-indicator" aria-hidden="true"></span>
+  {options.map((option) => (
+    <button type="button" class="theme-toggle-btn" data-theme-value={option.value} aria-label={option.label} title={option.label} aria-pressed="false">
+      {option.value === 'light' && (
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path>
+        </svg>
+      )}
+      {option.value === 'system' && (
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="2" y="3" width="20" height="14" rx="2"></rect>
+          <path d="M8 21h8M12 17v4"></path>
+        </svg>
+      )}
+      {option.value === 'dark' && (
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+        </svg>
+      )}
+    </button>
+  ))}
+</div>
+
+<style>
+  .theme-toggle {
+    position: relative;
+    display: inline-grid;
+    grid-template-columns: repeat(3, 2rem);
+    align-items: center;
+    padding: 3px;
+    border-radius: 9999px;
+    border: 1px solid var(--border-subtle);
+    background: color-mix(in oklab, var(--text-primary) 5%, transparent);
+  }
+
+  .theme-toggle-indicator {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 2rem;
+    height: calc(100% - 6px);
+    border-radius: 9999px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-rose);
+    box-shadow: 0 2px 10px -2px var(--primary-glow);
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  :global(:root[data-theme-pref='system']) .theme-toggle-indicator {
+    transform: translateX(2rem);
+  }
+
+  :global(:root[data-theme-pref='dark']) .theme-toggle-indicator {
+    transform: translateX(4rem);
+  }
+
+  .theme-toggle-btn {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    place-items: center;
+    height: 1.75rem;
+    border-radius: 9999px;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: color 0.2s ease;
+  }
+
+  .theme-toggle-btn:hover,
+  .theme-toggle-btn[aria-pressed='true'] {
+    color: var(--accent-text);
+  }
+</style>
+
+<script>
+  type Pref = 'light' | 'system' | 'dark';
+
+  const root = document.documentElement;
+  const media = window.matchMedia('(prefers-color-scheme: dark)');
+
+  const resolve = (pref: Pref) => (pref === 'system' ? (media.matches ? 'dark' : 'light') : pref);
+
+  const syncButtons = (pref: Pref) => {
+    document.querySelectorAll<HTMLButtonElement>('[data-theme-toggle] [data-theme-value]').forEach((btn) => {
+      btn.setAttribute('aria-pressed', String(btn.dataset.themeValue === pref));
+    });
+  };
+
+  const apply = (pref: Pref) => {
+    const theme = resolve(pref);
+    root.dataset.themePref = pref;
+    root.dataset.theme = theme;
+    document.querySelector('meta[name="theme-color"]')?.setAttribute('content', theme === 'dark' ? '#0c0a12' : '#fbf7f4');
+    syncButtons(pref);
+    window.dispatchEvent(new CustomEvent('themechange', { detail: { theme, pref } }));
+  };
+
+  const choose = (pref: Pref, origin?: HTMLElement) => {
+    try {
+      localStorage.setItem('theme', pref);
+    } catch {}
+
+    const changesTheme = resolve(pref) !== root.dataset.theme;
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const doc = document as Document & { startViewTransition?: (cb: () => void) => { ready: Promise<void> } };
+
+    if (!changesTheme || reduced || !doc.startViewTransition || !origin) {
+      apply(pref);
+      return;
+    }
+
+    // Circular reveal from the clicked button.
+    const rect = origin.getBoundingClientRect();
+    const x = rect.left + rect.width / 2;
+    const y = rect.top + rect.height / 2;
+    const radius = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y));
+    doc.startViewTransition(() => apply(pref)).ready.then(() => {
+      root.animate(
+        { clipPath: [`circle(0px at ${x}px ${y}px)`, `circle(${radius}px at ${x}px ${y}px)`] },
+        { duration: 550, easing: 'cubic-bezier(0.16, 1, 0.3, 1)', pseudoElement: '::view-transition-new(root)' },
+      );
+    }).catch(() => {});
+  };
+
+  syncButtons((root.dataset.themePref as Pref) || 'system');
+
+  document.querySelectorAll<HTMLButtonElement>('[data-theme-toggle] [data-theme-value]').forEach((btn) => {
+    btn.addEventListener('click', () => choose(btn.dataset.themeValue as Pref, btn));
+  });
+
+  media.addEventListener('change', () => {
+    if ((root.dataset.themePref || 'system') === 'system') apply('system');
+  });
+
+  // Keep multiple tabs in sync.
+  window.addEventListener('storage', (event) => {
+    if (event.key === 'theme') apply((event.newValue as Pref) || 'system');
+  });
+</script>

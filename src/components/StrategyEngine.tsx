@@ -100,7 +100,7 @@ export default function StrategyEngine() {
                   <div className="flex items-start gap-4">
                     <div className={`w-10 h-10 rounded-xl flex items-center justify-center font-bold text-sm flex-shrink-0 transition-colors ${
                       isActive 
-                        ? 'bg-gradient-to-br from-rose-500 to-pink-500 text-white shadow-md' 
+                        ? 'bg-gradient-to-br from-rose-500 to-pink-500 text-[#fff] shadow-md' 
                         : 'bg-slate-900 text-slate-400'
                     }`}>
                       <Icon className="w-5 h-5" />
@@ -164,7 +164,7 @@ export default function StrategyEngine() {
               </div>
 
               {/* Dashboard Preview Frame */}
-              <div className="rounded-2xl overflow-hidden border border-white/10 relative group">
+              <div className="keep-dark rounded-2xl overflow-hidden border border-white/10 relative group">
                 <img 
                   src="/images/looker-dashboard.webp" 
                   alt="Looker Studio Meta Ads Performance Dashboard Mockup" 

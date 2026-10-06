@@ -144,7 +144,7 @@ export default function ExperienceTimeline() {
                 onClick={() => setFilter(tab)}
                 className={`px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-200 cursor-pointer ${
                   filter === tab 
-                    ? 'bg-gradient-to-r from-rose-500 to-pink-500 text-white shadow-lg shadow-rose-500/30' 
+                    ? 'bg-gradient-to-r from-rose-500 to-pink-500 text-[#fff] shadow-lg shadow-rose-500/30' 
                     : 'bg-slate-900/80 text-slate-400 hover:text-white border border-white/5'
                 }`}
               >

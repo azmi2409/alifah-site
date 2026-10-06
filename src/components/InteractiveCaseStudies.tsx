@@ -198,7 +198,7 @@ export default function InteractiveCaseStudies() {
                 aria-pressed={activeFilter === tab.id}
                 className={`px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-200 cursor-pointer ${
                   activeFilter === tab.id
-                    ? 'bg-gradient-to-r from-rose-500 to-pink-500 text-white shadow-lg shadow-rose-500/30'
+                    ? 'bg-gradient-to-r from-rose-500 to-pink-500 text-[#fff] shadow-lg shadow-rose-500/30'
                     : 'bg-slate-900/80 text-slate-400 hover:text-white hover:bg-slate-800 border border-white/5'
                 }`}
               >
@@ -310,7 +310,7 @@ export default function InteractiveCaseStudies() {
         <AnimatePresence>
           {selectedProject && (
             <motion.div
-              className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md"
+              className="fixed inset-0 z-[95] flex items-center justify-center p-4 bg-black/85 backdrop-blur-md light:bg-[#1d1520]/45"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -321,7 +321,7 @@ export default function InteractiveCaseStudies() {
                 role="dialog"
                 aria-modal="true"
                 aria-labelledby="project-dialog-title"
-                className="glass-panel w-full max-w-2xl max-h-[90vh] overflow-y-auto p-6 sm:p-8 bg-slate-950 border border-rose-400/30 relative rounded-3xl shadow-2xl"
+                className="glass-panel w-full max-w-2xl max-h-[90vh] overflow-y-auto p-6 sm:p-8 !bg-[var(--bg-surface)] border border-rose-400/30 relative rounded-3xl shadow-2xl"
                 initial={{ scale: 0.9, y: 20 }}
                 animate={{ scale: 1, y: 0 }}
                 exit={{ scale: 0.9, y: 20 }}

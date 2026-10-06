@@ -23,16 +23,16 @@ export default function HeroMotion() {
   };
 
   return (
-    <section className="relative isolate overflow-hidden border-b border-white/10 bg-[#100e15] pt-32 pb-20 md:pt-44 md:pb-28">
-      <div className="absolute inset-0 -z-20 bg-[radial-gradient(ellipse_at_75%_40%,#38212e_0%,#17111b_44%,#100e15_78%)]" />
-      <div className="absolute inset-0 -z-10 [background-image:linear-gradient(#ffffff08_1px,transparent_1px),linear-gradient(90deg,#ffffff08_1px,transparent_1px)] [background-size:72px_72px] [mask-image:linear-gradient(to_bottom,black,transparent)]" />
+    <section className="relative isolate overflow-hidden border-b border-white/10 bg-[var(--hero-bg)] pt-32 pb-20 md:pt-44 md:pb-28">
+      <div className="absolute inset-0 -z-20 [background:var(--hero-glow)]" />
+      <div className="absolute inset-0 -z-10 [background-image:linear-gradient(var(--hero-grid)_1px,transparent_1px),linear-gradient(90deg,var(--hero-grid)_1px,transparent_1px)] [background-size:72px_72px] [mask-image:linear-gradient(to_bottom,black,transparent)]" />
       <HeroDots />
 
       <div className="site-container relative z-10">
         <div className="grid items-center gap-14 lg:grid-cols-[minmax(0,1.2fr)_minmax(290px,.8fr)] lg:gap-20">
           <div className="min-w-0">
             <div className="mb-8 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs font-medium tracking-[.16em] text-stone-300 uppercase">
-              <span className="inline-flex items-center gap-2 text-rose-200"><span className="h-1.5 w-1.5 rounded-full bg-rose-300" />Available for projects</span>
+              <span className="inline-flex items-center gap-2 text-emerald-300"><span className="pulse-dot" />Available for projects</span>
               <span className="text-stone-500">/</span>
               <span>Bekasi, Indonesia</span>
             </div>
@@ -46,10 +46,10 @@ export default function HeroMotion() {
             </p>
 
             <div className="mt-10 flex flex-wrap items-center gap-3">
-              <a href="#case-studies" className="inline-flex min-h-12 items-center gap-3 rounded-full bg-rose-300 px-6 text-sm font-semibold text-[#181019] transition-colors hover:bg-rose-200 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-rose-200">
+              <a href="#case-studies" className="btn-hero">
                 Explore work <ArrowUpRight aria-hidden="true" className="h-4 w-4" />
               </a>
-              <a href="https://wa.me/6281259488390?text=Hi%20Alifah,%20I%20saw%20your%20portfolio%20and%20would%20love%20to%20discuss%20a%20digital%20marketing%20project!" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-12 items-center rounded-full border border-white/30 px-6 text-sm font-semibold text-white transition-colors hover:border-rose-200 hover:text-rose-200 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-rose-200">
+              <a href="https://wa.me/6281259488390?text=Hi%20Alifah,%20I%20saw%20your%20portfolio%20and%20would%20love%20to%20discuss%20a%20digital%20marketing%20project!" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-12 items-center rounded-full border border-white/30 px-6 text-sm font-semibold text-white transition-colors hover:border-rose-300 hover:text-rose-200">
                 Let's talk <ArrowUpRight aria-hidden="true" className="ml-3 h-4 w-4" />
               </a>
             </div>
@@ -64,11 +64,11 @@ export default function HeroMotion() {
           </div>
 
           <div className="relative mx-auto w-full max-w-[430px] lg:mx-0">
-            <div className="relative aspect-[4/5] overflow-hidden rounded-t-[14rem] rounded-b-[1.5rem] border border-rose-200/20 bg-[#281b23]">
+            <div className="relative aspect-[4/5] overflow-hidden rounded-t-[14rem] rounded-b-[1.5rem] border border-rose-200/20 bg-[var(--hero-portrait-bg)] shadow-[var(--shadow-card)]">
               <img src="/images/alifah.webp" alt="Portrait of Alifah Azhar Nurhazmi" width="460" height="460" className="h-full w-full object-cover object-top" loading="eager" fetchPriority="high" />
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#100e15]/70 via-transparent to-transparent" />
             </div>
-            <div className="absolute right-4 bottom-5 left-4 flex items-end justify-between gap-4 text-white">
+            <div className="keep-dark absolute right-4 bottom-5 left-4 flex items-end justify-between gap-4 text-white">
               <span className="font-serif text-2xl italic sm:text-3xl">Alifah Azhar</span>
               <span className="text-right text-[10px] leading-relaxed tracking-[.15em] uppercase text-rose-100">Banking roots<br />Creative growth</span>
             </div>
