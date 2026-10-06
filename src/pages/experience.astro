@@ -1,0 +1,31 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import ExperienceTimeline from '../components/ExperienceTimeline';
+import EducationCertifications from '../components/EducationCertifications';
+import PageLinks from '../components/PageLinks.astro';
+import CtaBand from '../components/CtaBand.astro';
+import Footer from '../components/Footer.astro';
+
+const crumbs = [{ name: 'Experience', path: '/experience/' }];
+---
+
+<Layout
+  title="Experience & Education: Banking to Performance Marketing | Alifah Azhar"
+  description="Career of Alifah Azhar Nurhazmi: Top 3 account officer at Bank BRISyariah, BNI Life, then Meta Ads for Bonsai Sushi, Kowara and Indental Clinic. IPB and RevoU graduate."
+  pageType="AboutPage"
+  breadcrumbs={crumbs}
+>
+  <Navbar />
+
+  <main id="main">
+    <Breadcrumbs crumbs={crumbs} />
+    <ExperienceTimeline headingLevel="h1" client:visible />
+    <EducationCertifications client:visible />
+    <CtaBand />
+    <PageLinks exclude="/experience/" />
+  </main>
+
+  <Footer />
+</Layout>

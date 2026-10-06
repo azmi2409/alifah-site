@@ -1,0 +1,163 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import Footer from '../../components/Footer.astro';
+import { SITE_URL, absoluteUrl } from '../../data/site';
+import { projects, projectPath, type Project } from '../../data/projects';
+
+export function getStaticPaths() {
+  return projects.map((project, i) => ({
+    params: { slug: project.id },
+    props: {
+      project,
+      prev: projects[(i - 1 + projects.length) % projects.length],
+      next: projects[(i + 1) % projects.length],
+    },
+  }));
+}
+
+interface Props {
+  project: Project;
+  prev: Project;
+  next: Project;
+}
+
+const { project, prev, next } = Astro.props;
+const url = absoluteUrl(projectPath(project));
+const imageUrl = absoluteUrl(project.image);
+const crumbs = [
+  { name: 'Work', path: '/work/' },
+  { name: project.client, path: projectPath(project) },
+];
+
+const schema = [
+  {
+    "@type": "CreativeWork",
+    "@id": `${url}#casestudy`,
+    "name": `${project.client} — ${project.title}`,
+    "headline": project.title,
+    "description": project.summary,
+    "abstract": project.highlight,
+    "url": url,
+    "image": { "@type": "ImageObject", "url": imageUrl, "width": 1376, "height": 768 },
+    "genre": "Case study",
+    "keywords": [project.category, 'Meta Ads', 'Performance marketing', ...project.metrics.map((m) => m.value)].join(', '),
+    "creator": { "@id": `${SITE_URL}/#person` },
+    "author": { "@id": `${SITE_URL}/#person` },
+    "dateCreated": project.startDate,
+    "temporalCoverage": `${project.startDate}/${project.endDate}`,
+    "locationCreated": { "@type": "Place", "name": project.location },
+    "sourceOrganization": { "@type": "Organization", "name": project.client },
+    "mainEntityOfPage": { "@id": `${url}#webpage` },
+    "isPartOf": { "@id": absoluteUrl('/work/#casestudies') }
+  }
+];
+---
+
+<Layout
+  title={`${project.client}: ${project.title} | Alifah Azhar`}
+  description={`${project.summary} Case study by Alifah Azhar Nurhazmi, ${project.role}.`.slice(0, 300)}
+  ogType="article"
+  ogImage={imageUrl}
+  ogImageWidth={1376}
+  ogImageHeight={768}
+  ogImageAlt={`${project.client} — ${project.title}`}
+  breadcrumbs={crumbs}
+  schema={schema}
+>
+  <Navbar />
+
+  <main id="main">
+    <Breadcrumbs crumbs={crumbs} />
+
+    <article class="site-container py-10 sm:py-14">
+      <header class="max-w-3xl">
+        <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-rose-500/10 text-rose-300 border border-rose-500/25 mb-4">
+          {project.category}
+        </span>
+        <h1 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
+          {project.title}
+        </h1>
+        <p class="mt-5 text-base sm:text-lg text-slate-300 leading-relaxed">{project.summary}</p>
+      </header>
+
+      <dl class="mt-8 grid grid-cols-2 lg:grid-cols-4 gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10">
+        <div class="bg-slate-950 p-4">
+          <dt class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Client</dt>
+          <dd class="mt-1 text-sm font-semibold text-white">{project.client}</dd>
+        </div>
+        <div class="bg-slate-950 p-4">
+          <dt class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Role</dt>
+          <dd class="mt-1 text-sm font-semibold text-white">{project.role}</dd>
+        </div>
+        <div class="bg-slate-950 p-4">
+          <dt class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Period</dt>
+          <dd class="mt-1 text-sm font-semibold text-white"><time datetime={project.startDate}>{project.period}</time></dd>
+        </div>
+        <div class="bg-slate-950 p-4">
+          <dt class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Location</dt>
+          <dd class="mt-1 text-sm font-semibold text-white">{project.location}</dd>
+        </div>
+      </dl>
+
+      <figure class="mt-8 overflow-hidden rounded-3xl border border-white/10 bg-slate-950">
+        <img
+          src={project.image}
+          alt={`${project.client} campaign visual`}
+          width="1376"
+          height="768"
+          class="w-full h-auto object-cover"
+          fetchpriority="high"
+        />
+      </figure>
+
+      <div class="mt-10 grid gap-10 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,.7fr)]">
+        <section aria-labelledby="scope-heading">
+          <h2 id="scope-heading" class="text-xl sm:text-2xl font-bold text-white mb-5">Scope of work</h2>
+          <ul class="space-y-3">
+            {project.deliverables.map((item) => (
+              <li class="flex items-start gap-3 text-sm sm:text-base text-slate-300 leading-relaxed">
+                <span aria-hidden="true" class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-rose-400" />
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+
+          <div class="mt-8 p-5 rounded-2xl bg-rose-500/10 border border-rose-500/25">
+            <h2 class="text-xs font-bold text-rose-300 uppercase tracking-wider mb-1.5">Strategic highlight</h2>
+            <p class="text-sm sm:text-base text-slate-200 leading-relaxed">{project.highlight}</p>
+          </div>
+        </section>
+
+        <aside aria-labelledby="glance-heading">
+          <h2 id="glance-heading" class="text-xl sm:text-2xl font-bold text-white mb-5">At a glance</h2>
+          <dl class="grid grid-cols-2 gap-3">
+            {project.metrics.map((metric) => (
+              <div class="glass-panel border border-white/10 p-4">
+                <dt class="text-[11px] font-bold uppercase tracking-wider text-slate-400">{metric.label}</dt>
+                <dd class="mt-1 text-sm font-bold text-white">{metric.value}</dd>
+              </div>
+            ))}
+          </dl>
+        </aside>
+      </div>
+
+      <nav aria-label="More case studies" class="mt-14 grid gap-4 sm:grid-cols-2 border-t border-white/10 pt-8">
+        <a href={projectPath(prev)} class="group glass-panel border border-white/10 p-5 hover:border-rose-400/40">
+          <span class="text-xs font-semibold text-slate-400">← Previous</span>
+          <span class="mt-1 block font-bold text-white group-hover:text-rose-200">{prev.client}</span>
+        </a>
+        <a href={projectPath(next)} class="group glass-panel border border-white/10 p-5 hover:border-rose-400/40 sm:text-right">
+          <span class="text-xs font-semibold text-slate-400">Next →</span>
+          <span class="mt-1 block font-bold text-white group-hover:text-rose-200">{next.client}</span>
+        </a>
+      </nav>
+    </article>
+
+    <CtaBand title="Want similar results for your brand?" />
+  </main>
+
+  <Footer />
+</Layout>

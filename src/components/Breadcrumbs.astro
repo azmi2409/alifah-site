@@ -1,0 +1,22 @@
+---
+// Visible breadcrumb trail; Layout emits the matching BreadcrumbList JSON-LD.
+interface Props {
+  crumbs: { name: string; path: string }[];
+}
+
+const { crumbs } = Astro.props;
+const trail = [{ name: 'Home', path: '/' }, ...crumbs];
+---
+
+<nav aria-label="Breadcrumb" class="site-container pt-28 sm:pt-32">
+  <ol class="flex flex-wrap items-center gap-2 text-xs font-medium text-slate-400">
+    {trail.map((crumb, i) => (
+      <li class="flex items-center gap-2">
+        {i > 0 && <span aria-hidden="true" class="text-slate-500">/</span>}
+        {i === trail.length - 1
+          ? <span aria-current="page" class="text-rose-300">{crumb.name}</span>
+          : <a href={crumb.path} class="hover:text-rose-300 transition-colors">{crumb.name}</a>}
+      </li>
+    ))}
+  </ol>
+</nav>

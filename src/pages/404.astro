@@ -4,7 +4,7 @@ import BrandLogo from '../components/BrandLogo.astro';
 ---
 
 <Layout title="Page Not Found | Alifah Azhar Nurhazmi" canonicalUrl="https://www.alifah.my.id/404" noindex>
-  <main class="site-container min-h-screen flex flex-col items-center justify-center gap-8 py-16 text-center">
+  <main id="main" class="site-container min-h-screen flex flex-col items-center justify-center gap-8 py-16 text-center">
     <a href="/" aria-label="Alifah Azhar home"><BrandLogo size="md" /></a>
     <div class="glass-panel max-w-xl w-full p-8 sm:p-12 border border-white/10">
       <p class="text-rose-300 font-bold tracking-widest mb-4">404</p>
@@ -12,8 +12,8 @@ import BrandLogo from '../components/BrandLogo.astro';
       <p class="text-slate-300 mb-8">That page isn't here. Explore Alifah's portfolio instead.</p>
       <nav aria-label="Return to portfolio" class="flex flex-wrap items-center justify-center gap-4">
         <a class="btn-primary" href="/">Back to home</a>
-        <a class="text-rose-300 hover:text-rose-200 underline underline-offset-4" href="/#case-studies">View case studies</a>
-        <a class="text-rose-300 hover:text-rose-200 underline underline-offset-4" href="/#contact">Get in touch</a>
+        <a class="text-rose-300 hover:text-rose-200 underline underline-offset-4" href="/work/">View case studies</a>
+        <a class="text-rose-300 hover:text-rose-200 underline underline-offset-4" href="/contact/">Get in touch</a>
       </nav>
     </div>
   </main>

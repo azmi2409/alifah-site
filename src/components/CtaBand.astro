@@ -1,0 +1,28 @@
+---
+import { WHATSAPP_URL } from '../data/site';
+
+interface Props {
+  title?: string;
+  text?: string;
+}
+
+const {
+  title = 'Have a campaign in mind?',
+  text = 'Meta Ads setup, creative testing, or reporting you can act on. Let’s talk about your goals.',
+} = Astro.props;
+---
+
+<section class="py-14 sm:py-16" aria-label="Get in touch">
+  <div class="site-container">
+    <div class="glass-panel border border-rose-400/25 px-6 py-8 sm:px-10 sm:py-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
+      <div class="max-w-xl">
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight mb-2">{title}</h2>
+        <p class="text-sm sm:text-base text-slate-300 leading-relaxed">{text}</p>
+      </div>
+      <div class="flex flex-wrap items-center gap-3 shrink-0">
+        <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" class="btn-whatsapp">Chat on WhatsApp</a>
+        <a href="/contact/" class="btn-secondary">All contact options</a>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,47 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import StrategyEngine from '../components/StrategyEngine';
+import SkillsSection from '../components/SkillsSection';
+import PageLinks from '../components/PageLinks.astro';
+import CtaBand from '../components/CtaBand.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_URL, absoluteUrl } from '../data/site';
+
+const crumbs = [{ name: 'Approach', path: '/approach/' }];
+const services = [
+  ['Meta Ads campaign management', 'Facebook and Instagram campaign setup, budget allocation with CBO/ABO, and ongoing optimisation.'],
+  ['Audience architecture', 'Custom audiences, 1–3% lookalikes, geo-targeting for local businesses, and exclusion lists.'],
+  ['A/B creative & hook testing', 'Structured tests across hooks, formats (image, carousel, video) and copy, with fast kill thresholds.'],
+  ['Looker Studio reporting', 'Automated dashboards tracking ROAS, CPA, CTR and spend, reviewed weekly with owners.'],
+];
+const schema = services.map(([name, description], i) => ({
+  "@type": "Service",
+  "@id": absoluteUrl(`/approach/#service-${i + 1}`),
+  "name": name,
+  "description": description,
+  "serviceType": "Performance marketing",
+  "provider": { "@id": `${SITE_URL}/#person` },
+  "areaServed": { "@type": "Country", "name": "Indonesia" }
+}));
+---
+
+<Layout
+  title="Approach & Skills: Meta Ads Strategy, Testing & Reporting | Alifah Azhar"
+  description="How Alifah Azhar Nurhazmi runs Meta Ads: audience architecture, A/B creative and hook testing, and Looker Studio ROAS reporting, plus the full skill stack behind it."
+  breadcrumbs={crumbs}
+  schema={schema}
+>
+  <Navbar />
+
+  <main id="main">
+    <Breadcrumbs crumbs={crumbs} />
+    <StrategyEngine headingLevel="h1" client:visible />
+    <SkillsSection client:visible />
+    <CtaBand />
+    <PageLinks exclude="/approach/" />
+  </main>
+
+  <Footer />
+</Layout>

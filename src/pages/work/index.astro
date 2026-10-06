@@ -1,0 +1,46 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import InteractiveCaseStudies from '../../components/InteractiveCaseStudies';
+import PageLinks from '../../components/PageLinks.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import Footer from '../../components/Footer.astro';
+import { absoluteUrl } from '../../data/site';
+import { projects, projectPath } from '../../data/projects';
+
+const crumbs = [{ name: 'Work', path: '/work/' }];
+const schema = [
+  {
+    "@type": "ItemList",
+    "@id": absoluteUrl('/work/#casestudies'),
+    "name": "Meta Ads & performance marketing case studies",
+    "numberOfItems": projects.length,
+    "itemListElement": projects.map((project, i) => ({
+      "@type": "ListItem",
+      "position": i + 1,
+      "name": `${project.client} — ${project.title}`,
+      "url": absoluteUrl(projectPath(project))
+    }))
+  }
+];
+---
+
+<Layout
+  title="Case Studies: Meta Ads & Performance Marketing | Alifah Azhar"
+  description="Meta Ads case studies by Alifah Azhar Nurhazmi: Bonsai Sushi, Kowara Eatery Group, Indental Clinic Surabaya and Bali WISE. Targeting, A/B testing and Looker Studio reporting."
+  pageType="CollectionPage"
+  breadcrumbs={crumbs}
+  schema={schema}
+>
+  <Navbar />
+
+  <main id="main">
+    <Breadcrumbs crumbs={crumbs} />
+    <InteractiveCaseStudies headingLevel="h1" client:idle />
+    <CtaBand title="Want similar results for your brand?" />
+    <PageLinks exclude="/work/" />
+  </main>
+
+  <Footer />
+</Layout>

@@ -105,7 +105,8 @@ const experiences: ExperienceItem[] = [
   },
 ];
 
-export default function ExperienceTimeline() {
+export default function ExperienceTimeline({ headingLevel = 'h2' }: { headingLevel?: 'h1' | 'h2' }) {
+  const Heading = headingLevel;
   const [filter, setFilter] = useState<'All' | 'Digital Marketing' | 'Banking & Finance'>('All');
 
   const filtered = filter === 'All' 
@@ -113,7 +114,7 @@ export default function ExperienceTimeline() {
     : experiences.filter(e => e.type === filter);
 
   return (
-    <section id="experience" className="py-24 relative bg-slate-950/30">
+    <section id="experience" className="py-16 sm:py-20 relative bg-slate-950/30">
       <div className="site-container">
         
         {/* Section Header */}
@@ -128,9 +129,9 @@ export default function ExperienceTimeline() {
               <Briefcase className="w-3.5 h-3.5" />
               Career Journey
             </span>
-            <h2 className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight mb-4 break-words">
+            <Heading className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight mb-4 break-words">
               Professional <span className="text-gradient-rose">Track Record</span>
-            </h2>
+            </Heading>
             <p className="text-base sm:text-lg text-slate-300 leading-relaxed">
               From high-volume commercial banking financing to performance marketing campaign scaling.
             </p>

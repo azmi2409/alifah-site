@@ -1,0 +1,45 @@
+---
+// Visible FAQ; the page passes the same entries to Layout as FAQPage JSON-LD.
+interface Props {
+  items: { question: string; answer: string }[];
+}
+
+const { items } = Astro.props;
+---
+
+<section id="faq" class="py-16 sm:py-20 border-t border-white/5" aria-labelledby="faq-heading">
+  <div class="site-container grid gap-10 lg:grid-cols-[minmax(0,.8fr)_minmax(0,1.2fr)]">
+    <div>
+      <span class="text-xs font-bold uppercase tracking-[.16em] text-rose-300">FAQ</span>
+      <h2 id="faq-heading" class="mt-2 text-2xl sm:text-4xl font-extrabold text-white tracking-tight">Quick answers</h2>
+      <p class="mt-4 text-sm sm:text-base text-slate-300 leading-relaxed max-w-md">
+        The essentials about working with Alifah. Anything else? <a href="/contact/" class="text-rose-300 underline underline-offset-4 hover:text-rose-200">Get in touch</a>.
+      </p>
+    </div>
+    <div class="space-y-3">
+      {items.map((item, i) => (
+        <details class="faq-item glass-panel border border-white/10 px-5 py-4" open={i === 0}>
+          <summary class="flex cursor-pointer list-none items-center justify-between gap-4 text-sm sm:text-base font-semibold text-white">
+            <h3>{item.question}</h3>
+            <span aria-hidden="true" class="faq-icon text-rose-300 text-xl leading-none">+</span>
+          </summary>
+          <p class="mt-3 text-sm text-slate-300 leading-relaxed">{item.answer}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-icon {
+    transition: transform 0.2s ease;
+  }
+
+  details[open] .faq-icon {
+    transform: rotate(45deg);
+  }
+</style>

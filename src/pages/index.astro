@@ -4,31 +4,55 @@ import Navbar from '../components/Navbar.astro';
 import HeroMotion from '../components/HeroMotion';
 import MetricsRibbon from '../components/MetricsRibbon';
 import AboutSection from '../components/AboutSection';
-import InteractiveCaseStudies from '../components/InteractiveCaseStudies';
-import StrategyEngine from '../components/StrategyEngine';
-import SkillsSection from '../components/SkillsSection';
-import ExperienceTimeline from '../components/ExperienceTimeline';
-import EducationCertifications from '../components/EducationCertifications';
-import ContactSection from '../components/ContactSection';
+import FeaturedWork from '../components/FeaturedWork.astro';
+import Faq from '../components/Faq.astro';
+import PageLinks from '../components/PageLinks.astro';
+import CtaBand from '../components/CtaBand.astro';
 import Footer from '../components/Footer.astro';
+import { faqs, absoluteUrl } from '../data/site';
+import { projects, projectPath } from '../data/projects';
+
+const schema = [
+  {
+    "@type": "FAQPage",
+    "@id": absoluteUrl('/#faq'),
+    "mainEntity": faqs.map((faq) => ({
+      "@type": "Question",
+      "name": faq.question,
+      "acceptedAnswer": { "@type": "Answer", "text": faq.answer }
+    }))
+  },
+  {
+    "@type": "ItemList",
+    "@id": absoluteUrl('/#casestudies'),
+    "name": "Featured case studies",
+    "itemListElement": projects.map((project, i) => ({
+      "@type": "ListItem",
+      "position": i + 1,
+      "name": `${project.client} — ${project.title}`,
+      "url": absoluteUrl(projectPath(project))
+    }))
+  }
+];
 ---
 
-<Layout 
+<Layout
   title="Alifah Azhar Nurhazmi | Performance Marketer & Meta Ads Specialist"
-  description="Portfolio of Alifah Azhar Nurhazmi — Performance Marketer & Meta Ads Specialist. Former commercial banker combining financial discipline with Meta Ads, A/B testing, and Looker Studio reporting."
+  description="Alifah Azhar Nurhazmi is a Meta Ads specialist in Bekasi, Indonesia. Former commercial banker running Facebook & Instagram campaigns, A/B creative tests, and Looker Studio reporting."
+  ogType="profile"
+  pageType="ProfilePage"
+  schema={schema}
 >
   <Navbar />
-  
-  <main>
+
+  <main id="main">
     <HeroMotion client:load />
     <MetricsRibbon client:visible />
     <AboutSection client:visible />
-    <InteractiveCaseStudies client:visible />
-    <StrategyEngine client:visible />
-    <SkillsSection client:visible />
-    <ExperienceTimeline client:visible />
-    <EducationCertifications client:visible />
-    <ContactSection client:visible />
+    <FeaturedWork />
+    <Faq items={faqs} />
+    <PageLinks exclude="/work/" />
+    <CtaBand />
   </main>
 
   <Footer />

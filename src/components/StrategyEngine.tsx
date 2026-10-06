@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Sliders, Cpu, LineChart, CheckCircle2, ArrowRight, Eye, Sparkles } from 'lucide-react';
 
-export default function StrategyEngine() {
+export default function StrategyEngine({ headingLevel = 'h2' }: { headingLevel?: 'h1' | 'h2' }) {
+  const Heading = headingLevel;
   const [activeStep, setActiveStep] = useState(0);
 
   const steps = [
@@ -54,7 +55,7 @@ export default function StrategyEngine() {
   ];
 
   return (
-    <section id="strategy" className="py-24 relative bg-slate-950/40 border-t border-white/5">
+    <section id="strategy" className="py-16 sm:py-20 relative bg-slate-950/40 border-t border-white/5">
       <div className="site-container">
         
         {/* Section Header */}
@@ -69,9 +70,9 @@ export default function StrategyEngine() {
               <Sparkles className="w-3.5 h-3.5" />
               Strategic Methodology
             </span>
-            <h2 className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight mb-4 break-words">
+            <Heading className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight mb-4 break-words">
               The <span className="text-gradient-rose">Performance Marketing</span> Engine
-            </h2>
+            </Heading>
             <p className="text-base sm:text-lg text-slate-300 leading-relaxed">
               How I turn marketing budgets into predictable, profitable customer acquisition through structured iteration.
             </p>
